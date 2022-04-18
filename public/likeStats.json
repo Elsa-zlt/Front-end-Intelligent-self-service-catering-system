@@ -1,0 +1,99 @@
+{
+  "resultCode":"00000",
+  "msg":"select success",
+  "result":{
+    "array":[
+      {
+        "name": "菜品名称",
+        "visitNum": 1000,
+        "payNum": "￥1000",
+        "saleNum": 100,
+        "saleMoney": "￥10000"
+      },
+      {
+        "name": "菜品名称",
+        "visitNum": 1000,
+        "payNum": "￥1000",
+        "saleNum": 100,
+        "saleMoney": "￥10000"
+      },
+      {
+        "name": "菜品名称",
+        "visitNum": 1000,
+        "payNum": "￥1000",
+        "saleNum": 100,
+        "saleMoney": "￥10000"
+      },
+      {
+        "name": "菜品名称",
+        "visitNum": 1000,
+        "payNum": "￥1000",
+        "saleNum": 100,
+        "saleMoney": "￥10000"
+      },
+      {
+        "name": "菜品名称",
+        "visitNum": 1000,
+        "payNum": "￥1000",
+        "saleNum": 100,
+        "saleMoney": "￥10000"
+      },
+      {
+        "name": "菜品名称",
+        "visitNum": 1000,
+        "payNum": "￥1000",
+        "saleNum": 100,
+        "saleMoney": "￥10000"
+      },
+      {
+        "name": "菜品名称",
+        "visitNum": 1000,
+        "payNum": "￥1000",
+        "saleNum": 100,
+        "saleMoney": "￥10000"
+      },
+      {
+        "name": "菜品名称",
+        "visitNum": 1000,
+        "payNum": "￥1000",
+        "saleNum": 100,
+        "saleMoney": "￥10000"
+      },
+      {
+        "name": "菜品名称",
+        "visitNum": 1000,
+        "payNum": "￥1000",
+        "saleNum": 100,
+        "saleMoney": "￥10000"
+      },
+      {
+        "name": "菜品名称",
+        "visitNum": 1000,
+        "payNum": "￥1000",
+        "saleNum": 100,
+        "saleMoney": "￥10000"
+      },
+      {
+        "name": "菜品名称",
+        "visitNum": 1000,
+        "payNum": "￥1000",
+        "saleNum": 100,
+        "saleMoney": "￥10000"
+      },
+      {
+        "name": "菜品名称",
+        "visitNum": 1000,
+        "payNum": "￥1000",
+        "saleNum": 100,
+        "saleMoney": "￥10000"
+      },
+      {
+        "name": "菜品名称",
+        "visitNum": 1000,
+        "payNum": "￥1000",
+        "saleNum": 100,
+        "saleMoney": "￥10000"
+      }
+    ]
+  }
+}

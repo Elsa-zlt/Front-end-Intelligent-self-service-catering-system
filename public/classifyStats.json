@@ -1,0 +1,50 @@
+{
+  "resultCode":"00000",
+  "msg":"select success",
+  "result":{
+    "array":[
+      {
+        "classify": "分类名称",
+        "saleNum": 1000,
+        "numRatio": "20%",
+        "saleMoney": "￥10000",
+        "moneyRatio": "20%"
+      },
+      {
+        "classify": "分类名称",
+        "saleNum": 1000,
+        "numRatio": "20%",
+        "saleMoney": "￥10000",
+        "moneyRatio": "20%"
+      },
+      {
+        "classify": "分类名称",
+        "saleNum": 1000,
+        "numRatio": "20%",
+        "saleMoney": "￥10000",
+        "moneyRatio": "20%"
+      },
+      {
+        "classify": "分类名称",
+        "saleNum": 1000,
+        "numRatio": "20%",
+        "saleMoney": "￥10000",
+        "moneyRatio": "20%"
+      },
+      {
+        "classify": "分类名称",
+        "saleNum": 1000,
+        "numRatio": "20%",
+        "saleMoney": "￥10000",
+        "moneyRatio": "20%"
+      },
+      {
+        "classify": "分类名称",
+        "saleNum": 1000,
+        "numRatio": "20%",
+        "saleMoney": "￥10000",
+        "moneyRatio": "20%"
+      }
+    ]
+  }
+}

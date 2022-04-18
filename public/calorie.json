@@ -1,0 +1,68 @@
+{
+  "resultCode":"00000",
+  "msg":"select success",
+  "result":{
+    "array":[
+      {
+        "name": "菜品",
+        "calorie": "100千卡",
+        "num": 10000
+      },
+      {
+        "name": "菜品",
+        "calorie": "100千卡",
+        "num": 10000
+      },
+      {
+        "name": "菜品",
+        "calorie": "100千卡",
+        "num": 10000
+      },
+      {
+        "name": "菜品",
+        "calorie": "100千卡",
+        "num": 10000
+      },
+      {
+        "name": "菜品",
+        "calorie": "100千卡",
+        "num": 10000
+      },
+      {
+        "name": "菜品",
+        "calorie": "100千卡",
+        "num": 10000
+      },
+      {
+        "name": "菜品",
+        "calorie": "100千卡",
+        "num": 10000
+      },
+      {
+        "name": "菜品",
+        "calorie": "100千卡",
+        "num": 10000
+      },
+      {
+        "name": "菜品",
+        "calorie": "100千卡",
+        "num": 10000
+      },
+      {
+        "name": "菜品",
+        "calorie": "100千卡",
+        "num": 10000
+      },
+      {
+        "name": "菜品",
+        "calorie": "100千卡",
+        "num": 10000
+      },
+      {
+        "name": "分类名称",
+        "calorie": "1000千卡",
+        "num": "20%"
+      }
+    ]
+  }
+}

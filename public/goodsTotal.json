@@ -1,0 +1,10 @@
+{
+  "resultCode":"00000",
+  "msg":"request success",
+  "result": {
+    "up": 10,
+    "down": 38,
+    "classify": 7,
+    "total": 100
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "resultCode":"00000",
+  "msg":"select success",
+  "result":{
+    "array":[
+      {
+        "category": "分类名称",
+        "totalCalorie": "1000千卡",
+        "precentCalorie": "20%"
+      },
+      {
+        "category": "分类名称",
+        "totalCalorie": "1000千卡",
+        "precentCalorie": "20%"
+      },
+      {
+        "category": "分类名称",
+        "totalCalorie": "1000千卡",
+        "precentCalorie": "20%"
+      },
+      {
+        "category": "分类名称",
+        "totalCalorie": "1000千卡",
+        "precentCalorie": "20%"
+      },
+      {
+        "category": "分类名称",
+        "totalCalorie": "1000千卡",
+        "precentCalorie": "20%"
+      },
+      {
+        "category": "分类名称",
+        "totalCalorie": "1000千卡",
+        "precentCalorie": "20%"
+      }
+    ]
+  }
+}

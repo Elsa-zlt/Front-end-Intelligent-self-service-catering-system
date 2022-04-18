@@ -1,0 +1,19 @@
+{
+  "resultCode":"00000",
+  "msg":"request success",
+  "result": {
+    "monthOrder": 10002,
+    "weekOrder": 1005,
+    "monthAvg": 13,
+    "weekAvg": -5,
+    "data": [
+      { "name": "8-23", "value": 4000 },
+      { "name": "8-24", "value": 1000 },
+      { "name": "8-25", "value": 1238 },
+      { "name": "8-26", "value": 2643 },
+      { "name": "8-27" },
+      { "name": "8-28" },
+      { "name": "8-29" }
+    ]
+  }
+}

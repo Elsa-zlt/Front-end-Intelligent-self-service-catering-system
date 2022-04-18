@@ -1,0 +1,198 @@
+{
+  "resultCode":"00000",
+  "msg":"select success",
+  "result":{
+    "array":[
+      { 
+        "uId": "1",
+        "username": "用户",
+        "phone": "12345678910",
+        "sex": 0,
+        "dishNum": 1002,
+        "totalPay": "￥10000",
+        "calorieSum": "100千卡"
+      },
+      { 
+        "uId": "1",
+        "username": "用户",
+        "phone": "12345678910",
+        "sex": 1,
+        "dishNum": 100,
+        "totalPay": "￥10000",
+        "calorieSum": "100千卡"
+      },
+      { 
+        "uId": "1",
+        "username": "用户",
+        "phone": "12345678910",
+        "sex": 0,
+        "dishNum": 100,
+        "totalPay": "￥10000",
+        "calorieSum": "100千卡"
+      },
+      { 
+        "uId": "1",
+        "username": "用户",
+        "phone": "12345678910",
+        "sex": 1,
+        "dishNum": 100,
+        "totalPay": "￥10000",
+        "calorieSum": "100千卡"
+      },
+      { 
+        "uId": "1",
+        "username": "用户",
+        "phone": "12345678910",
+        "sex": 0,
+        "dishNum": 100,
+        "totalPay": "￥10000",
+        "calorieSum": "100千卡"
+      },
+      { 
+        "uId": "1",
+        "username": "用户",
+        "phone": "12345678910",
+        "sex": 0,
+        "dishNum": 100,
+        "totalPay": "￥10000",
+        "calorieSum": "100千卡"
+      },
+      { 
+        "uId": "1",
+        "username": "用户",
+        "phone": "12345678910",
+        "sex": 0,
+        "dishNum": 100,
+        "totalPay": "￥10000",
+        "calorieSum": "100千卡"
+      },
+      { 
+        "uId": "1",
+        "username": "用户",
+        "phone": "12345678910",
+        "sex": 0,
+        "dishNum": 100,
+        "totalPay": "￥10000",
+        "calorieSum": "100千卡"
+      },
+      { 
+        "uId": "1",
+        "username": "用户",
+        "phone": "12345678910",
+        "sex": 0,
+        "dishNum": 100,
+        "totalPay": "￥10000",
+        "calorieSum": "100千卡"
+      },
+      { 
+        "uId": "1",
+        "username": "用户",
+        "phone": "12345678910",
+        "sex": 0,
+        "dishNum": 100,
+        "totalPay": "￥10000",
+        "calorieSum": "100千卡"
+      },
+      { 
+        "uId": "1",
+        "username": "用户",
+        "phone": "12345678910",
+        "sex": 0,
+        "dishNum": 100,
+        "totalPay": "￥10000",
+        "calorieSum": "100千卡"
+      },
+      { 
+        "uId": "1",
+        "username": "用户",
+        "phone": "12345678910",
+        "sex": 0,
+        "dishNum": 100,
+        "totalPay": "￥10000",
+        "calorieSum": "100千卡"
+      },
+      { 
+        "uId": "1",
+        "username": "用户",
+        "phone": "12345678910",
+        "sex": 0,
+        "dishNum": 100,
+        "totalPay": "￥10000",
+        "calorieSum": "100千卡"
+      },
+      { 
+        "uId": "1",
+        "username": "用户",
+        "phone": "12345678910",
+        "sex": 0,
+        "dishNum": 100,
+        "totalPay": "￥10000",
+        "calorieSum": "100千卡"
+      },
+      { 
+        "uId": "1",
+        "username": "用户",
+        "phone": "12345678910",
+        "sex": 0,
+        "dishNum": 100,
+        "totalPay": "￥10000",
+        "calorieSum": "100千卡"
+      },
+      { 
+        "uId": "1",
+        "username": "用户",
+        "phone": "12345678910",
+        "sex": 1,
+        "dishNum": 100,
+        "totalPay": "￥10000",
+        "calorieSum": "100千卡"
+      },
+      { 
+        "uId": "1",
+        "username": "用户",
+        "phone": "12345678910",
+        "sex": 0,
+        "dishNum": 100,
+        "totalPay": "￥10000",
+        "calorieSum": "100千卡"
+      },
+      { 
+        "uId": "1",
+        "username": "用户",
+        "phone": "12345678910",
+        "sex": 0,
+        "dishNum": 100,
+        "totalPay": "￥10000",
+        "calorieSum": "100千卡"
+      },
+      { 
+        "uId": "1",
+        "username": "用户",
+        "phone": "12345678910",
+        "sex": 0,
+        "dishNum": 100,
+        "totalPay": "￥10000",
+        "calorieSum": "100千卡"
+      },
+      { 
+        "uId": "1",
+        "username": "用户",
+        "phone": "12345678910",
+        "sex": 0,
+        "dishNum": 100,
+        "totalPay": "￥10000",
+        "calorieSum": "100千卡"
+      },
+      { 
+        "uId": "1",
+        "username": "用户",
+        "phone": "12345678910",
+        "sex": 1,
+        "dishNum": 100,
+        "totalPay": "￥10000",
+        "calorieSum": "100千卡"
+      }
+      
+    ]
+  }
+}

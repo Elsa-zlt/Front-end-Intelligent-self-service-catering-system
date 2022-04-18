@@ -1,0 +1,130 @@
+{
+  "resultCode":"00000",
+  "msg":"select success",
+  "result":{
+    "array":[
+      { 
+        "index": "1",
+        "name": "菜品",
+        "price": "￥10",
+        "status": 0,
+        "readNum": 100,
+        "saleNum": 10,
+        "saleMoney": "￥1000",
+        "pay": "￥300",
+        "profit": "￥700"
+      },
+      { 
+        "index": "2",
+        "name": "菜品",
+        "price": "￥10",
+        "status": 0,
+        "readNum": 100,
+        "saleNum": 10,
+        "saleMoney": "￥1000",
+        "pay": "￥300",
+        "profit": "￥700"
+      },{ 
+        "index": "3",
+        "name": "菜品",
+        "price": "￥10",
+        "status": 0,
+        "readNum": 100,
+        "saleNum": 10,
+        "saleMoney": "￥1000",
+        "pay": "￥300",
+        "profit": "￥700"
+      },{ 
+        "index": "4",
+        "name": "菜品",
+        "price": "￥10",
+        "status": 0,
+        "readNum": 100,
+        "saleNum": 10,
+        "saleMoney": "￥1000",
+        "pay": "￥300",
+        "profit": "￥700"
+      },{ 
+        "index": "5",
+        "name": "菜品",
+        "price": "￥10",
+        "status": 0,
+        "readNum": 100,
+        "saleNum": 10,
+        "saleMoney": "￥1000",
+        "pay": "￥300",
+        "profit": "￥700"
+      },{ 
+        "index": "6",
+        "name": "菜品",
+        "price": "￥10",
+        "status": 0,
+        "readNum": 100,
+        "saleNum": 10,
+        "saleMoney": "￥1000",
+        "pay": "￥300",
+        "profit": "￥700"
+      },{ 
+        "index": "7",
+        "name": "菜品",
+        "price": "￥10",
+        "status": 0,
+        "readNum": 100,
+        "saleNum": 10,
+        "saleMoney": "￥1000",
+        "pay": "￥300",
+        "profit": "￥700"
+      },{ 
+        "index": "8",
+        "name": "菜品",
+        "price": "￥10",
+        "status": 0,
+        "readNum": 100,
+        "saleNum": 10,
+        "saleMoney": "￥1000",
+        "pay": "￥300",
+        "profit": "￥700"
+      },{ 
+        "index": "9",
+        "name": "菜品",
+        "price": "￥10",
+        "status": 0,
+        "readNum": 100,
+        "saleNum": 10,
+        "saleMoney": "￥1000",
+        "pay": "￥300",
+        "profit": "￥700"
+      },{ 
+        "index": "10",
+        "name": "菜品",
+        "price": "￥10",
+        "status": 0,
+        "readNum": 100,
+        "saleNum": 10,
+        "saleMoney": "￥1000",
+        "pay": "￥300",
+        "profit": "￥700"
+      },{ 
+        "index": "11",
+        "name": "菜品",
+        "price": "￥10",
+        "status": 0,
+        "readNum": 100,
+        "saleNum": 10,
+        "saleMoney": "￥1000",
+        "pay": "￥300",
+        "profit": "￥700"
+      },{ 
+        "index": "12",
+        "name": "菜品",
+        "price": "￥10",
+        "status": 0,
+        "readNum": 100,
+        "saleNum": 10,
+        "saleMoney": "￥1000",
+        "pay": "￥300",
+        "profit": "￥700"
+      }
+    ]
+  }
+}
