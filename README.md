@@ -1,24 +1,5 @@
-# myapp
+## Front-end-Intelligent-self-service-catering-system（智慧自助餐饮系统前端部分）
 
-## Project setup
-```
-npm install
-```
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
 
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+![image-20220418114603538](E:\IdeaProjects\qianduan\README\image-20220418114603538.png)
