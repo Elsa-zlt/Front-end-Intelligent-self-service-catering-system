@@ -18,39 +18,39 @@
 
 **当未输入账号及密码时，提示"请填写管理员账号"。**
 
-![img](file:///C:\Users\ASUS\AppData\Local\Temp\ksohtml4900\wps1.jpg)
+![img](E:\IdeaProjects\qianduan\README.assets\wps1.jpg)
 
 **当未输入密码时，提示"请填写登录账号"。**
 
-![img](https://word2md.com/RackMultipart20220425-1-zmniqk_html_9803bdf3ff4679e7.png)
+![img](E:\IdeaProjects\qianduan\README.assets\wps2.jpg)
 
 **当输入的账号或密码错误时，提示"账号或密码错误"。**
 
-![img](https://word2md.com/RackMultipart20220425-1-zmniqk_html_c4cf96f1921f0417.png)
+![img](E:\IdeaProjects\qianduan\README.assets\wps3.jpg)
 
 1. **首页**
 
 **通过验证后，进入到系统首页。在该页面可以看到餐厅的相关信息，如餐厅详情、销售情况、销售额类别占比、订单统计、销售统计、商品及用户总览等。管理员可以通过该页面的统计数据直观地了解到餐厅的营收状态、收入涨幅情况、订单总量变化情况及菜品销售情况。**
 
-![img](https://word2md.com/RackMultipart20220425-1-zmniqk_html_883875993bae83b5.png)
+![img](E:\IdeaProjects\qianduan\README.assets\wps4.jpg)
 
-![img](https://word2md.com/RackMultipart20220425-1-zmniqk_html_c591b3d889e2ef7a.png)
+![img](E:\IdeaProjects\qianduan\README.assets\wps5.jpg)
 
-![img](https://word2md.com/RackMultipart20220425-1-zmniqk_html_c174476828fbf915.png)
+![img](E:\IdeaProjects\qianduan\README.assets\wps6.jpg)
 
 **在首页的销售类别占比统计模块的饼图中，若鼠标悬浮在对应类别上时，会显示对应类别的占比及销售数额。**
 
-![img](https://word2md.com/RackMultipart20220425-1-zmniqk_html_8e773a3b63b36abb.png)
+![img](E:\IdeaProjects\qianduan\README.assets\wps7.jpg)
 
 **而订单统计及销售统计模块的折线图当鼠标悬浮于对应的节点上时，会显示当前节点的详细数值，如当前日期及当日订单数量或销售数额。**
 
-![img](https://word2md.com/RackMultipart20220425-1-zmniqk_html_c2fa9233f0517728.png)
+![img](E:\IdeaProjects\qianduan\README.assets\wps8.jpg)
 
-![img](https://word2md.com/RackMultipart20220425-1-zmniqk_html_c44d8e3d7d5092d4.png)
+![img](E:\IdeaProjects\qianduan\README.assets\wps9.jpg)
 
 **当点击右上角选择日期的组件框时，会弹出日期选择器，选择一个时间范围，折线图的数据则变换为所选择的时间范围的数据。**
 
-![img](https://word2md.com/RackMultipart20220425-1-zmniqk_html_521196c413456b8c.png)
+![img](E:\IdeaProjects\qianduan\README.assets\wps10.jpg)
 
 **3****. **** 用户评分管理**
 
