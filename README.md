@@ -18,39 +18,39 @@
 
 **当未输入账号及密码时，提示"请填写管理员账号"。**
 
-![img](E:\IdeaProjects\qianduan\README.assets\wps1.jpg)
+![img](.\README.assets\wps1.jpg)
 
 **当未输入密码时，提示"请填写登录账号"。**
 
-![img](E:\IdeaProjects\qianduan\README.assets\wps2.jpg)
+![img](.\README.assets\wps2.jpg)
 
 **当输入的账号或密码错误时，提示"账号或密码错误"。**
 
-![img](E:\IdeaProjects\qianduan\README.assets\wps3.jpg)
+![img](.\README.assets\wps3.jpg)
 
 1. **首页**
 
 **通过验证后，进入到系统首页。在该页面可以看到餐厅的相关信息，如餐厅详情、销售情况、销售额类别占比、订单统计、销售统计、商品及用户总览等。管理员可以通过该页面的统计数据直观地了解到餐厅的营收状态、收入涨幅情况、订单总量变化情况及菜品销售情况。**
 
-![img](E:\IdeaProjects\qianduan\README.assets\wps4.jpg)
+![img](.\README.assets\wps4.jpg)
 
-![img](E:\IdeaProjects\qianduan\README.assets\wps5.jpg)
+![img](.\README.assets\wps5.jpg)
 
-![img](E:\IdeaProjects\qianduan\README.assets\wps6.jpg)
+![img](.\README.assets\wps6.jpg)
 
 **在首页的销售类别占比统计模块的饼图中，若鼠标悬浮在对应类别上时，会显示对应类别的占比及销售数额。**
 
-![img](E:\IdeaProjects\qianduan\README.assets\wps7.jpg)
+![img](.\README.assets\wps7.jpg)
 
 **而订单统计及销售统计模块的折线图当鼠标悬浮于对应的节点上时，会显示当前节点的详细数值，如当前日期及当日订单数量或销售数额。**
 
-![img](E:\IdeaProjects\qianduan\README.assets\wps8.jpg)
+![img](.\README.assets\wps8.jpg)
 
-![img](E:\IdeaProjects\qianduan\README.assets\wps9.jpg)
+![img](.\README.assets\wps9.jpg)
 
 **当点击右上角选择日期的组件框时，会弹出日期选择器，选择一个时间范围，折线图的数据则变换为所选择的时间范围的数据。**
 
-![img](E:\IdeaProjects\qianduan\README.assets\wps10.jpg)
+![img](.\README.assets\wps10.jpg)
 
 **3****. **** 用户评分管理**
 
