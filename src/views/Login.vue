@@ -17,6 +17,7 @@
           </div>
           <div class="tips" v-show="tips"><span class="iconfont icon-gantanhao"></span>{{ tips }}</div>
           <div class="submit" :class="{submitclick: submitmove}" @click.stop="handleAjax">登 录</div>
+          <div class="el-button--primary" @click.stop="handleTest">测 试</div>
         </div>
       </div>
     </div>
@@ -40,10 +41,28 @@ export default {
       // 登录按钮抖动
       submitmove: false,
       // 提示信息
-      tips: ''
+      tips: '',
+      token: ''
     }
   },
   methods: {
+
+    handleTest () {
+      console.log(JSON.parse(localStorage.getItem('user_token')))
+      console.log(typeof (JSON.parse(localStorage.getItem('user_token'))))
+      axios.get('http://localhost:8081/restaurant/list', {
+        headers: {
+          token: localStorage.getItem('user_token')
+        }
+      }).catch(error => {
+        console.log(error)
+      })
+        .then(res => {
+          console.log(JSON.parse(localStorage.getItem('user_token')))
+          console.log(res)
+        })
+    },
+
     handleUsernameClick () {
       this.uIsActive = true
       this.pIsActive = false
@@ -61,36 +80,52 @@ export default {
     },
 
     handleAjax () {
-      // if (this.username) {
-      //   if (this.password) {
-      //     // 发送ajax请求,注意要修改请求方式！！！
-      //     axios.post('http://8.130.52.59:8082/login', {
-      //       // params: {
-      //       id: parseInt(this.username),
-      //       password: this.password
-      //       // }
-      //       // headers: {
-      //       //   'Content-Type': 'application/x-www-form-urlencoded'
-      //       // }
-      //     }).then(res => {
-      //       console.log('登录接口测试', res)
-      //       if (res.data.code === 1) {
-      //         // 跳转至路由index
-      //         this.$router.push('/index')
-      //       } else {
-      //         this.submitmove = true
-      //         this.tips = '帐号或密码不正确'
-      //       }
-      //     })
-      //   } else {
-      //     this.tips = '请填写登录密码'
-      //     this.submitmove = true
+      if (this.username) {
+        if (this.password) {
+          // 发送ajax请求,注意要修改请求方式！！！
+          axios.post('http://localhost:8081/manager/login', {
+            // params: {
+            name: this.username,
+            password: this.password
+            // }
+            // headers: {
+            //   'Content-Type': 'application/x-www-form-urlencoded'
+            // }
+          }).then(res => {
+            // console.log('登录接口的jwt的token信息', res.data.data.token)
+            localStorage.setItem('user_token', JSON.stringify(res.data.data.token))
+            console.log('登录接口的jwt的token信息：' + localStorage.getItem('user_token'))
+            if (res.data.code === 200) {
+              // 跳转至路由index
+              this.$router.push('/index')
+            } else {
+              this.submitmove = true
+              this.tips = '帐号或密码不正确'
+            }
+          })
+        } else {
+          this.tips = '请填写登录密码'
+          this.submitmove = true
+        }
+      } else {
+        this.tips = '请填写管理员账号'
+        this.submitmove = true
+      }
+      // this.$router.push('/index')
+
+      // var user = localStorage.getItem('user_token')
+      // var userObj = JSON.parse(user)
+      // this.token = userObj.token
+      // console.log(JSON.parse(localStorage.getItem('user_token')))
+      // // eslint-disable-next-line no-unused-expressions
+      // axios.get('http://localhost:8081/restaurant/list', {
+      //   headers: {
+      //     token: JSON.parse(localStorage.getItem('user_token'))
       //   }
-      // } else {
-      //   this.tips = '请填写管理员账号'
-      //   this.submitmove = true
-      // }
-      this.$router.push('/index')
+      // })
+      //   .then(res => {
+      //     console.log(res)
+      //   })
     }
   },
   computed: {

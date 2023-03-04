@@ -6,6 +6,7 @@
         <span>首页</span>
       </template>
     </Title>
+    <div class="el-button--primary" @click.stop="handleTest">测 试</div>
     <div class="content">
       <!-- 餐厅信息 -->
       <DetailCard id="restaurant" padding="10px 45px 20px">
@@ -153,6 +154,7 @@ import TimeRange from '../../components/TimeRange.vue'
 import LineEcharts from '../../components/LineEcharts.vue'
 import TotalCard from '../../components/TotalCard.vue'
 import * as echarts from 'echarts'
+import axios from 'axios'
 // import axios from 'axios'
 
 export default {
@@ -234,6 +236,71 @@ export default {
     }
   },
   methods: {
+
+    handleTest () {
+      console.log(JSON.parse(localStorage.getItem('user_token')))
+      console.log(typeof (JSON.parse(localStorage.getItem('user_token'))))
+      let info1 = localStorage.getItem('user_token')
+      info1 = info1.substring(1, info1.length - 1)
+      console.log(info1)
+      axios.get('http://localhost:8081/restaurant/list', {
+        headers: {
+          token: info1
+        }
+      }).catch(error => {
+        console.log(error)
+      })
+        .then(res => {
+          console.log(JSON.parse(localStorage.getItem('user_token')))
+          console.log(res)
+        })
+      // axios.get('http://localhost:8081/menu/list', {
+      //   headers: {
+      //     token: info1
+      //   }
+      // }).catch(error => {
+      //   console.log(error)
+      // })
+      //   .then(res => {
+      //     console.log(JSON.parse(localStorage.getItem('user_token')))
+      //     console.log(res)
+      //   })
+      // axios.put('http://localhost:8081/restaurant', {
+      //   resId: 5,
+      //   resName: 'hhh',
+      //   resAddress: 'hhh',
+      //   resOpenTime: 'hhh',
+      //   resNum: 1
+      // }, {
+      //   headers: {
+      //     token: info1
+      //   }
+      // }).catch(error => {
+      //   console.log(error)
+      // })
+      //   .then(res => {
+      //     console.log(JSON.parse(localStorage.getItem('user_token')))
+      //     console.log(res)
+      //   })
+      // axios.post('http://localhost:8081/restaurant', {
+      //   resId: 6,
+      //   resName: 'hhh',
+      //   resAddress: 'hhh',
+      //   resOpenTime: 'hhh',
+      //   resNum: 1
+      // }, {
+      //   headers: {
+      //     token: info1
+      //   }
+      // }).catch(error => {
+      //   console.log(error)
+      // })
+      //   .then(res => {
+      //     console.log(JSON.parse(localStorage.getItem('user_token')))
+      //     console.log(res)
+      //   })
+    },
+
     handleToday (date) {
       // 获取当天的日期
       console.log('today')
