@@ -238,8 +238,8 @@ export default {
   methods: {
 
     handleTest () {
-      console.log(JSON.parse(localStorage.getItem('user_token')))
-      console.log(typeof (JSON.parse(localStorage.getItem('user_token'))))
+      // console.log(JSON.parse(localStorage.getItem('user_token')))
+      // console.log(typeof (JSON.parse(localStorage.getItem('user_token'))))
       let info1 = localStorage.getItem('user_token')
       info1 = info1.substring(1, info1.length - 1)
       console.log(info1)
