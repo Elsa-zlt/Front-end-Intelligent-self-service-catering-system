@@ -155,6 +155,7 @@ import LineEcharts from '../../components/LineEcharts.vue'
 import TotalCard from '../../components/TotalCard.vue'
 import * as echarts from 'echarts'
 import axios from 'axios'
+import service from '../../utils/http.js'
 // import axios from 'axios'
 
 export default {
@@ -243,17 +244,27 @@ export default {
       let info1 = localStorage.getItem('user_token')
       info1 = info1.substring(1, info1.length - 1)
       console.log(info1)
-      axios.get('http://localhost:8081/restaurant/list', {
-        headers: {
-          token: info1
-        }
-      }).catch(error => {
-        console.log(error)
+      service.get('restaurant/list', {
+
       })
+        .catch(error => {
+          console.log(error)
+        })
         .then(res => {
-          console.log(JSON.parse(localStorage.getItem('user_token')))
           console.log(res)
         })
+
+      // axios.get('http://localhost:8081/restaurant/list', {
+      //   headers: {
+      //     token: info1
+      //   }
+      // }).catch(error => {
+      //   console.log(error)
+      // })
+      //   .then(res => {
+      //     console.log(JSON.parse(localStorage.getItem('user_token')))
+      //     console.log(res)
+      //   })
       // axios.get('http://localhost:8081/menu/list', {
       //   headers: {
       //     token: info1
@@ -282,23 +293,35 @@ export default {
       //     console.log(JSON.parse(localStorage.getItem('user_token')))
       //     console.log(res)
       //   })
-      // axios.post('http://localhost:8081/restaurant', {
-      //   resId: 6,
-      //   resName: 'hhh',
-      //   resAddress: 'hhh',
-      //   resOpenTime: 'hhh',
-      //   resNum: 1
-      // }, {
-      //   headers: {
-      //     token: info1
-      //   }
-      // }).catch(error => {
-      //   console.log(error)
-      // })
+      // service
+      //   .post('restaurant', {
+      //     resId: 7,
+      //     resName: 'test1',
+      //     resAddress: 'test1',
+      //     resOpenTime: 'test1',
+      //     resNum: 1
+      //   })
+      //   .catch(error => {
+      //     console.log(error)
+      //   })
       //   .then(res => {
-      //     console.log(JSON.parse(localStorage.getItem('user_token')))
       //     console.log(res)
       //   })
+      service
+        .post('order', {
+          oId: '22',
+          mId: '2',
+          cId: '1',
+          mName: '韭菜',
+          moNum: '3',
+          moPrice: '5'
+        })
+        .catch(error => {
+          console.log(error)
+        })
+        .then(res => {
+          console.log(res)
+        })
     },
 
     handleToday (date) {
