@@ -3,10 +3,9 @@
   <div>
     <Title>
       <template #title>
-        <span>首页</span>
+        <span>首页 </span><span>{{hello}}</span>
       </template>
     </Title>
-    <div class="el-button--primary" @click.stop="handleTest">测 试</div>
     <div class="content">
       <!-- 餐厅信息 -->
       <DetailCard id="restaurant" padding="10px 45px 20px">
@@ -16,17 +15,17 @@
         <template #content>
           <div class="r_msg">
             <div class="img">
-              <img src="../../assets/logo.png">
+              <img src="https://n.sinaimg.cn/sinakd10121/400/w1000h1000/20200325/0a54-irkazzv1018453.png">
             </div>
             <div class="msg">
-              <div class="name">餐厅名称</div>
+              <div class="name">{{resName}}</div>
               <div class="time">
                 <span class="iconfont icon-shizhong"></span>
-                10:00-22:30
+                {{resOpenTime}}
               </div>
               <div class="add">
                 <span class="iconfont icon-ditu-dibiao"></span>
-                餐厅地址
+                {{resAddress}}
               </div>
             </div>
             <div class="detail">餐厅详情</div>
@@ -46,14 +45,14 @@
                 <div class="text">今日销售额 (元)</div>
                 <div class="time">截止5分钟前</div>
               </div>
-              <div class="num">1000</div>
+              <div class="num">{{totalPrice}}</div>
             </div>
             <div class="total">
               <div class="today">
                 <div class="text">今日订单总数</div>
                 <div class="time">截止5分钟前</div>
               </div>
-              <div class="num">100</div>
+              <div class="num">{{orderNums}}</div>
             </div>
           </div>
         </template>
@@ -169,6 +168,12 @@ export default {
   },
   data () {
     return {
+      resName: '',
+      resOpenTime: '上午9点-下午9点',
+      resAddress: '广东海洋大学',
+      hello: '',
+      totalPrice: '',
+      orderNums: '',
       // 热门搜索的表
       tableHead: [
         {
@@ -237,93 +242,6 @@ export default {
     }
   },
   methods: {
-
-    handleTest () {
-      // console.log(JSON.parse(localStorage.getItem('user_token')))
-      // console.log(typeof (JSON.parse(localStorage.getItem('user_token'))))
-      let info1 = localStorage.getItem('user_token')
-      info1 = info1.substring(1, info1.length - 1)
-      console.log(info1)
-      service.get('restaurant/list', {
-
-      })
-        .catch(error => {
-          console.log(error)
-        })
-        .then(res => {
-          console.log(res)
-        })
-
-      // axios.get('http://localhost:8081/restaurant/list', {
-      //   headers: {
-      //     token: info1
-      //   }
-      // }).catch(error => {
-      //   console.log(error)
-      // })
-      //   .then(res => {
-      //     console.log(JSON.parse(localStorage.getItem('user_token')))
-      //     console.log(res)
-      //   })
-      // axios.get('http://localhost:8081/menu/list', {
-      //   headers: {
-      //     token: info1
-      //   }
-      // }).catch(error => {
-      //   console.log(error)
-      // })
-      //   .then(res => {
-      //     console.log(JSON.parse(localStorage.getItem('user_token')))
-      //     console.log(res)
-      //   })
-      // axios.put('http://localhost:8081/restaurant', {
-      //   resId: 5,
-      //   resName: 'hhh',
-      //   resAddress: 'hhh',
-      //   resOpenTime: 'hhh',
-      //   resNum: 1
-      // }, {
-      //   headers: {
-      //     token: info1
-      //   }
-      // }).catch(error => {
-      //   console.log(error)
-      // })
-      //   .then(res => {
-      //     console.log(JSON.parse(localStorage.getItem('user_token')))
-      //     console.log(res)
-      //   })
-      // service
-      //   .post('restaurant', {
-      //     resId: 7,
-      //     resName: 'test1',
-      //     resAddress: 'test1',
-      //     resOpenTime: 'test1',
-      //     resNum: 1
-      //   })
-      //   .catch(error => {
-      //     console.log(error)
-      //   })
-      //   .then(res => {
-      //     console.log(res)
-      //   })
-      service
-        .post('order', {
-          oId: '22',
-          mId: '2',
-          cId: '1',
-          mName: '韭菜',
-          moNum: '3',
-          moPrice: '5'
-        })
-        .catch(error => {
-          console.log(error)
-        })
-        .then(res => {
-          console.log(res)
-        })
-    },
-
     handleToday (date) {
       // 获取当天的日期
       console.log('today')
@@ -496,6 +414,46 @@ export default {
       { value: 2000, name: '瓜果类' },
       { value: 1000, name: '水果类' }
     ])
+    // 餐厅数据
+    service.get('restaurant/list', {
+    })
+      .catch(error => {
+        console.log(error)
+      })
+      .then(res => {
+        console.log(res)
+        this.resName = res.data.data[0].resName
+        this.resAddress = res.data.data[0].resAddress
+        this.resOpenTime = res.data.data[0].resOpenTime
+      })
+    axios.get('http://localhost:8081/hello', {
+    })
+      .catch(error => {
+        console.log(error)
+      })
+      .then(res => {
+        console.log(res)
+        this.hello = res.data
+      })
+    // 订单数据
+    service.get('order/list', {
+    })
+      .catch(error => {
+        console.log(error)
+      })
+      .then(res => {
+        console.log(res)
+        var orderData = res.data
+        console.log(orderData.data)
+        var len = orderData.data.length
+        var totalPrice = 0
+        for (var i = 0; i < len; i++) {
+          totalPrice += orderData.data[i].oTotalPrice
+        }
+        console.log(totalPrice)
+        this.totalPrice = totalPrice
+        this.orderNums = orderData.data.length
+      })
   }
 }
 </script>
