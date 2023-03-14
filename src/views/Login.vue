@@ -17,7 +17,6 @@
           </div>
           <div class="tips" v-show="tips"><span class="iconfont icon-gantanhao"></span>{{ tips }}</div>
           <div class="submit" :class="{submitclick: submitmove}" @click.stop="handleAjax">登 录</div>
-          <div class="el-button--primary" @click.stop="handleTest">测 试</div>
         </div>
       </div>
     </div>

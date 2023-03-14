@@ -174,6 +174,7 @@ export default {
       hello: '',
       totalPrice: '',
       orderNums: '',
+      total: '',
       // 热门搜索的表
       tableHead: [
         {
@@ -453,6 +454,16 @@ export default {
         console.log(totalPrice)
         this.totalPrice = totalPrice
         this.orderNums = orderData.data.length
+      })
+    service.get('menu/count', {
+    })
+      .catch(error => {
+        console.log(error)
+      })
+      .then(res => {
+        console.log(res)
+        this.total = res.data.data
+        console.log(this.total)
       })
   }
 }

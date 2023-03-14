@@ -21,6 +21,7 @@
 
 <script>
 import axios from 'axios'
+import service from "@/utils/http";
 
 export default {
   props: {
@@ -43,9 +44,29 @@ export default {
       // console.log(res)
       this.up = res.data.result.up
       this.down = res.data.result.down
-      this.classify = res.data.result.classify
-      this.total = res.data.result.total
+      // this.classify = res.data.result.classify
+      // this.total = res.data.result.total
     })
+    service.get('menu/count', {
+    })
+      .catch(error => {
+        console.log(error)
+      })
+      .then(res => {
+        console.log(res)
+        this.total = res.data.data
+        console.log(this.total)
+      })
+    service.get('menu/CategoryCount', {
+    })
+      .catch(error => {
+        console.log(error)
+      })
+      .then(res => {
+        console.log(res)
+        this.classify = res.data.data
+        console.log(this.total)
+      })
   }
 }
 </script>
