@@ -21,7 +21,7 @@
 
 <script>
 import axios from 'axios'
-import service from "@/utils/http";
+import service from '@/utils/http'
 
 export default {
   props: {
