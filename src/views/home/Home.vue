@@ -129,7 +129,7 @@
             商品总览
           </template>
           <template #content>
-            <TotalCard :textArr="['已下架', '已上架', '菜品种类', '菜品总数']" url="/goodsTotal.json"></TotalCard>
+            <GoodTotalCard :textArr="['已下架', '已上架', '菜品种类', '菜品总数']" url="/goodsTotal.json"></GoodTotalCard>
           </template>
         </DetailCard>
         <DetailCard width="565px">
@@ -151,14 +151,16 @@ import DetailCard from '../../components/DetailCard.vue'
 import Table from '../../components/Table.vue'
 import TimeRange from '../../components/TimeRange.vue'
 import LineEcharts from '../../components/LineEcharts.vue'
-import TotalCard from '../../components/TotalCard.vue'
 import * as echarts from 'echarts'
 import axios from 'axios'
 import service from '../../utils/http.js'
+import GoodTotalCard from '@/components/GoodTotalCard'
+import TotalCard from '@/components/TotalCard'
 // import axios from 'axios'
 
 export default {
   components: {
+    GoodTotalCard,
     Title,
     DetailCard,
     Table,

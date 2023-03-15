@@ -5,21 +5,22 @@
         <span>菜品管理</span>
       </template>
     </Title>
-    <BaseTable :chooseComponent="tableObj" url='/dish.json' style1="width: 1160px;margin: 0 auto" edit="下架">
+    <MenuTablePage :chooseComponent="tableObj" url='' style1="width: 1160px;margin: 0 auto" edit="下架">
       <template #new>
         <Button type="primary" class="new" @click="handleNewDish">新增菜品</Button>
       </template>
-    </BaseTable>
+    </MenuTablePage>
   </div>
 </template>
 
 <script>
 import Title from '../../components/Title.vue'
-import BaseTable from '../../components/BaseTablePage.vue'
+// import BaseTable from '../../components/BaseTablePage.vue'
+import MenuTablePage from '@/components/MenuTablePage'
 
 export default {
   components: {
-    BaseTable,
+    MenuTablePage,
     Title
   },
   data () {
@@ -76,32 +77,32 @@ export default {
           },
           {
             title: '菜品分类',
-            key: 'category',
+            key: 'mCategory',
             width: 100,
             align: 'center'
           },
           {
-            title: '菜品原料',
-            key: 'material',
+            title: '菜品名称',
+            key: 'mName',
             width: 100,
             align: 'center',
             tooltip: true
           },
           {
             title: '成本',
-            key: 'oldprice',
+            key: 'mOldPrice',
             width: 70,
             align: 'center'
           },
           {
             title: '单价',
-            key: 'price',
+            key: 'mPrice',
             width: 70,
             align: 'center'
           },
           {
             title: '热量',
-            key: 'calorie',
+            key: 'mCalorie',
             width: 90,
             align: 'center'
           },
@@ -114,13 +115,13 @@ export default {
           },
           {
             title: '上传时间',
-            key: 'time',
+            key: 'mTime',
             width: 168,
             align: 'center'
           },
           {
-            title: '菜品详情',
-            key: 'detail',
+            title: '菜品原料',
+            key: 'mMaterial',
             width: 121,
             align: 'center'
           },

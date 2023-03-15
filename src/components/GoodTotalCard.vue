@@ -13,7 +13,7 @@
       <div class="status">{{textArr[2]}}</div>
     </div>
     <div class="each">
-      <div class="num">{{count}}</div>
+      <div class="num">{{total}}</div>
       <div class="status">{{textArr[3]}}</div>
     </div>
   </div>
@@ -36,7 +36,7 @@ export default {
       up: 0,
       down: 0,
       classify: 0,
-      count: 0
+      total: 0
     }
   },
   mounted () {
@@ -44,27 +44,27 @@ export default {
       // console.log(res)
       this.up = res.data.result.up
       this.down = res.data.result.down
-      this.classify = res.data.result.classify
+      // this.classify = res.data.result.classify
       // this.total = res.data.result.total
     })
-    // service.get('menu/count', {
-    // })
-    //   .catch(error => {
-    //     console.log(error)
-    //   })
-    //   .then(res => {
-    //     console.log(res)
-    //     this.total = res.data.data
-    //     console.log(this.total)
-    //   })
-    service.get('consumer/count', {
+    service.get('menu/count', {
     })
       .catch(error => {
         console.log(error)
       })
       .then(res => {
         console.log(res)
-        this.count = res.data.data
+        this.total = res.data.data
+        console.log(this.total)
+      })
+    service.get('menu/CategoryCount', {
+    })
+      .catch(error => {
+        console.log(error)
+      })
+      .then(res => {
+        console.log(res)
+        this.classify = res.data.data
         console.log(this.total)
       })
   }
