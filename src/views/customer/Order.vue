@@ -5,18 +5,19 @@
         <span>订单信息</span>
       </template>
     </Title>
-    <BaseTable :chooseComponent="tableObj" url='/order.json'></BaseTable>
+    <OrderTablePage :chooseComponent="tableObj" url=''></OrderTablePage>
   </div>
 </template>
 
 <script>
 import Title from '../../components/Title.vue'
-import BaseTable from '../../components/BaseTablePage.vue'
+// import BaseTable from '../../components/BaseTablePage.vue'
+import OrderTablePage from '@/components/OrderTablePage'
 
 export default {
   components: {
     Title,
-    BaseTable
+    OrderTablePage
   },
   data () {
     return {
@@ -41,25 +42,25 @@ export default {
           },
           {
             title: '订单编号',
-            key: 'orderId',
+            key: 'oId',
             width: 150,
             align: 'center'
           },
           {
             title: '用户信息',
-            key: 'comsumerMsg',
+            key: 'cId',
             width: 150,
             align: 'center'
           },
           {
             title: '订单总价',
-            key: 'orderTotalPrice',
+            key: 'oTotalPrice',
             width: 120,
             align: 'center'
           },
           {
             title: '订单状态',
-            slot: 'status_o',
+            slot: 'oStatus',
             width: 100,
             align: 'center',
             tooltip: true
@@ -72,7 +73,7 @@ export default {
           },
           {
             title: '下单时间',
-            key: 'orderTime',
+            key: 'oTime',
             width: 200,
             align: 'center'
           },
