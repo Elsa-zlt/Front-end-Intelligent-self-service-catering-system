@@ -9,7 +9,7 @@
       <slot name="new"></slot>
     </div>
     <div class="table w" :style="style1">
-      <Table :isBorder="chooseComponent.isBorder" :isStripe="chooseComponent.isStripe" :head="chooseComponent.tableHead" :body="tableData" :width1="chooseComponent.tableWidth" :editText="edit" :delText="del"></Table>
+      <Table v-if="isShow" :isBorder="chooseComponent.isBorder" :isStripe="chooseComponent.isStripe" :head="chooseComponent.tableHead" :body="tableData" :width1="chooseComponent.tableWidth" :editText="edit" :delText="del"></Table>
     </div>
     <div class="page w">
       <Page @returnPage="handleReturnPage" :totalData="pageDataLength"></Page>
@@ -94,7 +94,8 @@ export default {
       // 获取到的全部表格数据
       allTableData: [],
       // 表格内显示的10条数据
-      tableData: []
+      tableData: [],
+      isShow: false
     }
   },
   methods: {
@@ -121,6 +122,36 @@ export default {
     handleClickSelect () {
       // 拿到选择条件，发送请求进行筛选，给tableData进行赋值
       console.log('selectValue:', this.selectValue, 'date:', this.date)
+    },
+    async getTableData (oId, i) {
+      service.get('menuorder/' + oId, {
+      })
+        .catch(error => {
+          console.log(error)
+        })
+        .then(e => {
+          console.log(e.data.msg)
+          this.allTableData[i].dishMsg = e.data.msg
+        })
+    },
+    async getData () {
+      service.get('order/list', {
+      })
+        .catch(error => {
+          console.log(error)
+        })
+        .then(res => {
+          console.log(res.data.data)
+          this.pageDataLength = res.data.data.length
+          this.allTableData = res.data.data
+          for (let i = 0; i < this.allTableData.length; i++) {
+            var oId = this.allTableData[i].oId
+            this.getTableData(oId, i)
+          }
+          var table = this.allTableData.slice(0, 10)
+          this.tableData = table
+          console.log(table)
+        })
     }
   },
   mounted () {
@@ -130,24 +161,34 @@ export default {
       // var table = this.allTableData.slice(0, 10)
       // this.tableData = table
     })
-    service.get('order/list', {
-    })
-      .catch(error => {
-        console.log(error)
-      })
-      .then(res => {
-        console.log(res.data.data)
-        this.pageDataLength = res.data.data.length
-        this.allTableData = res.data.data
-        var table = this.allTableData.slice(0, 10)
-        for (var i = 0; i < table.length; i++) {
-          // table[i].mPhoto = '/avatar.jpg'
-          table[i].oStatus = '已完成'
-        }
-        this.tableData = table
-        console.log(table)
-      })
-  }
+    this.getData()
+    this.isShow = true
+    // service.get('order/list', {
+    // })
+    //   .catch(error => {
+    //     console.log(error)
+    //   })
+    //   .then(res => {
+    //     console.log(res.data.data)
+    //     this.pageDataLength = res.data.data.length
+    //     this.allTableData = res.data.data
+    //     for (let i = 0; i < this.allTableData.length; i++) {
+    //       var oId = this.allTableData[i].oId
+    //       service.get('menuorder/' + oId, {
+    //       })
+    //         .catch(error => {
+    //           console.log(error)
+    //         })
+    //         .then(res => {
+    //           console.log(res.data.msg)
+    //           this.allTableData[i].dishMsg = res.data.msg
+    //         })
+    //     }
+    //     var table = this.allTableData.slice(0, 10)
+    //     this.tableData = table
+    //     console.log(table)
+    //   })
+  },
 }
 </script>
 
