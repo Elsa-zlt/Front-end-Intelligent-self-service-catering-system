@@ -60,7 +60,7 @@ export default {
           },
           {
             title: '订单状态',
-            slot: 'oStatus',
+            key: 'oStatus',
             width: 100,
             align: 'center',
             tooltip: true

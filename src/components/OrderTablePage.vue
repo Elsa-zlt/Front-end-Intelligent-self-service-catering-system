@@ -25,6 +25,7 @@ import Table from './Table.vue'
 import Page from './Page.vue'
 import axios from 'axios'
 import service from '@/utils/http'
+
 export default {
   props: {
     // 请求数据url
@@ -132,6 +133,9 @@ export default {
         .then(e => {
           console.log(e.data.msg)
           this.allTableData[i].dishMsg = e.data.msg
+          if (i === 9) {
+            this.tableData = this.allTableData.slice(0, 10)
+          }
         })
     },
     async getData () {
@@ -189,6 +193,9 @@ export default {
     //     console.log(table)
     //   })
   },
+  computed () {
+    // this.tableData = this.allTableData.slice(0, 10)
+  }
 }
 </script>
 
