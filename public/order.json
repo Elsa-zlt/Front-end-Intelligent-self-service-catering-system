@@ -9,7 +9,7 @@
         "comsumerMsg":"点击查看->",
         "orderTime":"2019-06-15 22:48:47",
         "orderTotalPrice":"￥100.0",
-        "status": 1 
+        "oStatus": 1
       },
       { 
         "orderId":"1234561234861",

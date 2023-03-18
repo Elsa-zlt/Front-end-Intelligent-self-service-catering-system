@@ -123,6 +123,35 @@ export default {
     handleClickSelect () {
       // 拿到选择条件，发送请求进行筛选，给tableData进行赋值
       console.log('selectValue:', this.selectValue, 'date:', this.date)
+      var DateTime = ''
+      for (var i = 0; i < this.date.length; i++) {
+        if (i === 0) {
+          DateTime += this.date[i] + '-'
+        } else {
+          DateTime += this.date[i]
+        }
+      }
+      console.log(DateTime)
+      service.post('selectOrderByDate', {
+        time: DateTime
+      })
+        .catch(error => {
+          console.log(error)
+        })
+        .then(res => {
+          console.log(res.data.data)
+          this.pageDataLength = res.data.data.length
+          this.allTableData = res.data.data
+          for (let i = 0; i < this.allTableData.length; i++) {
+            var oId = this.allTableData[i].oId
+            var cId = this.allTableData[i].cId
+            this.getTableData(oId, i)
+            this.getConsumerInfoBycId(cId, i)
+          }
+          var table = this.allTableData.slice(0, 10)
+          this.tableData = table
+          console.log(table)
+        })
     },
     async getConsumerInfoBycId (cId, i) {
       service.get('consumer/' + cId, {
@@ -149,7 +178,7 @@ export default {
           }
         })
     },
-    async getData () {
+    async getAllTableData () {
       service.get('order/list', {
       })
         .catch(error => {
@@ -178,7 +207,7 @@ export default {
       // var table = this.allTableData.slice(0, 10)
       // this.tableData = table
     })
-    this.getData()
+    this.getAllTableData()
     this.isShow = true
     // service.get('order/list', {
     // })
