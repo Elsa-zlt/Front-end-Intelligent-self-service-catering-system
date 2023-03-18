@@ -124,6 +124,17 @@ export default {
       // 拿到选择条件，发送请求进行筛选，给tableData进行赋值
       console.log('selectValue:', this.selectValue, 'date:', this.date)
     },
+    async getConsumerInfoBycId (cId, i) {
+      service.get('consumer/' + cId, {
+      })
+        .catch(error => {
+          console.log(error)
+        })
+        .then(e => {
+          console.log(e.data.data.name)
+          this.allTableData[i].cId = e.data.data.name
+        })
+    },
     async getTableData (oId, i) {
       service.get('menuorder/' + oId, {
       })
@@ -150,7 +161,9 @@ export default {
           this.allTableData = res.data.data
           for (let i = 0; i < this.allTableData.length; i++) {
             var oId = this.allTableData[i].oId
+            var cId = this.allTableData[i].cId
             this.getTableData(oId, i)
+            this.getConsumerInfoBycId(cId, i)
           }
           var table = this.allTableData.slice(0, 10)
           this.tableData = table
