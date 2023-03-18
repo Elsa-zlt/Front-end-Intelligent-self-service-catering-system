@@ -5,7 +5,7 @@
       <Select class="select" v-show="chooseComponent.haveSelect" :text="chooseComponent.selectText" :itemArray="chooseComponent.selectArr" @select="handleSelectValue"></Select>
       <Date class="select" v-show="chooseComponent.haveDate" @getDate="getDateChoose"></Date>
       <Button type="primary" class="button" v-show="chooseComponent.haveDate || chooseComponent.haveSelect" @click="handleClickSelect"><span class="iconfont icon-loudou"></span>筛选</Button>
-      <Button type="primary" class="button" v-show="chooseComponent.haveDate || chooseComponent.haveSelect" @click="handleResetSelect">重置</Button>
+      <Button type="primary" class="button" v-show="chooseComponent.haveDate || chooseComponent.haveSelect" @click="handleResetSelect">刷新</Button>
       <Search v-show="chooseComponent.haveSearch" @getSearch="handleSearch"></Search>
       <slot name="new"></slot>
     </div>
@@ -123,6 +123,70 @@ export default {
       this.search = data
       console.log(this.search)
       // 发送请求
+      console.log(this.checkNumber(data))
+      if (this.checkNumber(data)) {
+        var oId = data
+        service.get('order/one/' + oId, {
+        })
+          .catch(error => {
+            console.log(error)
+          })
+          .then(e => {
+            this.pageDataLength = 1
+            this.allTableData = []
+            console.log(e.data.data)
+            this.allTableData[0] = e.data.data
+            console.log(this.allTableData[0])
+            var oId = this.allTableData[0].oId
+            var cId = this.allTableData[0].cId
+            service.get('menuorder/' + oId, {
+            })
+              .catch(error => {
+                console.log(error)
+              })
+              .then(e => {
+                this.allTableData[0].dishMsg = e.data.msg
+              })
+            service.get('consumer/' + cId, {
+            })
+              .catch(error => {
+                console.log(error)
+              })
+              .then(e => {
+                this.allTableData[0].cId = e.data.data.name
+                this.tableData = []
+                this.tableData[0] = this.allTableData[0]
+              })
+          })
+      } else {
+        service.get('order/' + data, {
+        })
+          .catch(error => {
+            console.log(error)
+          })
+          .then(res => {
+            console.log(res.data.data)
+            this.pageDataLength = res.data.data.length
+            this.allTableData = res.data.data
+            for (let i = 0; i < this.allTableData.length; i++) {
+              var oId = this.allTableData[i].oId
+              var cId = this.allTableData[i].cId
+              this.getTableData(oId, i)
+              this.getConsumerInfoBycId(cId, i)
+            }
+            var table = this.allTableData.slice(0, 10)
+            this.tableData = table
+            console.log(table)
+          })
+      }
+    },
+    // 验证字符串是否是数字
+    checkNumber (theObj) {
+      var reg = /^[0-9]+\.?[0-9]*$/
+      if (reg.test(theObj)) {
+        return true
+      }
+      return false
     },
     // 处理点击筛选按钮
     handleClickSelect () {
