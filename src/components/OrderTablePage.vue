@@ -5,6 +5,7 @@
       <Select class="select" v-show="chooseComponent.haveSelect" :text="chooseComponent.selectText" :itemArray="chooseComponent.selectArr" @select="handleSelectValue"></Select>
       <Date class="select" v-show="chooseComponent.haveDate" @getDate="getDateChoose"></Date>
       <Button type="primary" class="button" v-show="chooseComponent.haveDate || chooseComponent.haveSelect" @click="handleClickSelect"><span class="iconfont icon-loudou"></span>筛选</Button>
+      <Button type="primary" class="button" v-show="chooseComponent.haveDate || chooseComponent.haveSelect" @click="handleResetSelect">重置</Button>
       <Search v-show="chooseComponent.haveSearch" @getSearch="handleSearch"></Search>
       <slot name="new"></slot>
     </div>
@@ -85,7 +86,7 @@ export default {
   data () {
     return {
       // 下拉选项框选择后对应的返回值
-      selectValue: '',
+      selectValue: 1,
       // 日历选择器选择后对应的日期
       date: '',
       // 搜索框内容
@@ -100,10 +101,14 @@ export default {
     }
   },
   methods: {
+    handleResetSelect () {
+      location.reload()
+    },
     handleSelectValue (e) {
       // 拿到下拉选项的选中值
       this.selectValue = e
       // 发送ajax请求
+      console.log(e)
     },
     // 处理分页
     handleReturnPage (data) {
@@ -121,6 +126,9 @@ export default {
     },
     // 处理点击筛选按钮
     handleClickSelect () {
+      if (this.date === '' && this.selectValue === 1) {
+        this.getAllTableData()
+      }
       // 拿到选择条件，发送请求进行筛选，给tableData进行赋值
       console.log('selectValue:', this.selectValue, 'date:', this.date)
       var DateTime = ''
@@ -132,26 +140,32 @@ export default {
         }
       }
       console.log(DateTime)
-      service.post('selectOrderByDate', {
-        time: DateTime
-      })
-        .catch(error => {
-          console.log(error)
+      if (this.selectValue === 1) {
+        service.post('selectOrderByDate', {
+          time: DateTime
         })
-        .then(res => {
-          console.log(res.data.data)
-          this.pageDataLength = res.data.data.length
-          this.allTableData = res.data.data
-          for (let i = 0; i < this.allTableData.length; i++) {
-            var oId = this.allTableData[i].oId
-            var cId = this.allTableData[i].cId
-            this.getTableData(oId, i)
-            this.getConsumerInfoBycId(cId, i)
-          }
-          var table = this.allTableData.slice(0, 10)
-          this.tableData = table
-          console.log(table)
-        })
+          .catch(error => {
+            console.log(error)
+          })
+          .then(res => {
+            console.log(res.data.data)
+            this.pageDataLength = res.data.data.length
+            this.allTableData = res.data.data
+            for (let i = 0; i < this.allTableData.length; i++) {
+              var oId = this.allTableData[i].oId
+              var cId = this.allTableData[i].cId
+              this.getTableData(oId, i)
+              this.getConsumerInfoBycId(cId, i)
+            }
+            var table = this.allTableData.slice(0, 10)
+            this.tableData = table
+            console.log(table)
+          })
+      } else {
+        this.pageDataLength = 0
+        this.allTableData = null
+        this.tableData = null
+      }
     },
     async getConsumerInfoBycId (cId, i) {
       service.get('consumer/' + cId, {
