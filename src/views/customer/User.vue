@@ -5,18 +5,18 @@
         <span>用户信息</span>
       </template>
     </Title>
-    <BaseTable :chooseComponent="tableObj" url="/user.json"></BaseTable>
+    <UserTablePage :chooseComponent="tableObj" url=""></UserTablePage>
   </div>
 </template>
 
 <script>
 import Title from '../../components/Title.vue'
-import BaseTable from '../../components/BaseTablePage.vue'
+import UserTablePage from '@/components/UserTablePage'
 
 export default {
   components: {
     Title,
-    BaseTable
+    UserTablePage
   },
   data () {
     return {
@@ -41,38 +41,38 @@ export default {
           },
           {
             title: '编号',
-            key: 'num',
+            key: 'id',
             width: 70,
             align: 'center'
           },
           {
             title: '用户名',
-            key: 'cName',
+            key: 'name',
             width: 150,
             align: 'center'
           },
           {
             title: '用户电话',
-            key: 'cPhone',
+            key: 'phone',
             width: 160,
             align: 'center'
           },
           {
             title: '性别',
-            key: 'cSex',
+            key: 'sex',
             width: 80,
             align: 'center',
             tooltip: true
           },
           {
             title: '密码',
-            key: 'cPassword',
+            key: 'password',
             width: 150,
             align: 'center'
           },
           {
             title: '注册时间',
-            key: 'cTime',
+            key: 'time',
             width: 200,
             align: 'center'
           },
