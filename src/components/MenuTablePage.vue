@@ -139,10 +139,10 @@ export default {
         console.log(res.data.data)
         this.pageDataLength = res.data.data.length
         this.allTableData = res.data.data
-        var table = this.allTableData.slice(0, 10)
-        for (var i = 0; i < table.length; i++) {
-          table[i].mPhoto = '/avatar.jpg'
+        for (var i = 0; i < this.allTableData.length; i++) {
+          this.allTableData[i].mPhoto = '/avatar.jpg'
         }
+        var table = this.allTableData.slice(0, 10)
         this.tableData = table
         console.log(table)
       })
