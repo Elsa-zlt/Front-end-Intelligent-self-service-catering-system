@@ -30,19 +30,19 @@ export default {
         dishArr: [
           {
             value: 0,
-            label: '类目'
+            label: '1-肉类'
           },
           {
             value: 1,
-            label: '类目'
+            label: '2-青叶菜类'
           },
           {
             value: 2,
-            label: '类目'
+            label: '3-瓜果类'
           },
           {
             value: 3,
-            label: '类目'
+            label: '4-水果类'
           }
         ],
         selectText: '请选择状态',
