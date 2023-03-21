@@ -149,6 +149,7 @@ export default {
           this.allTableData = res.data.data
           for (var i = 0; i < this.allTableData.length; i++) {
             this.allTableData[i].mPhoto = '/avatar.jpg'
+            this.allTableData[i].mCategory = this.getCategory(this.allTableData[i].mCategory)
           }
           var table = this.allTableData.slice(0, 10)
           this.tableData = table
@@ -173,6 +174,7 @@ export default {
             this.allTableData = res.data.data
             for (var i = 0; i < this.allTableData.length; i++) {
               this.allTableData[i].mPhoto = '/avatar.jpg'
+              this.allTableData[i].mCategory = this.getCategory(this.allTableData[i].mCategory)
             }
             var table = this.allTableData.slice(0, 10)
             this.tableData = table
@@ -205,6 +207,7 @@ export default {
         this.allTableData = res.data.data
         for (var i = 0; i < this.allTableData.length; i++) {
           this.allTableData[i].mPhoto = '/avatar.jpg'
+          this.allTableData[i].mCategory = this.getCategory(this.allTableData[i].mCategory)
         }
         var table = this.allTableData.slice(0, 10)
         this.tableData = table

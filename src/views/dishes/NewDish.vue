@@ -8,9 +8,6 @@
     <div class="content">
       <div class="box">
         <Form :model="formItem" :label-width="80">
-          <FormItem label="菜品编号:">
-            <Input class="num" v-model="formItem.num" placeholder="请输入菜品编号"></Input>
-          </FormItem>
           <FormItem label="菜品名称:">
             <Input class="name" v-model="formItem.name" placeholder="请输入菜品名称"></Input>
           </FormItem>
@@ -52,6 +49,7 @@
 <script>
 import Title from '../../components/Title.vue'
 import UploadImg from '../../components/UploadImg.vue'
+import service from '@/utils/http'
 
 export default {
   components: {
@@ -64,18 +62,34 @@ export default {
         num: '',
         name: '',
         select: '',
-        option: ['菜品分类1', '菜品分类2', '菜品分类3'],
+        option: ['肉类', '青叶菜类', '瓜果类', '水果类'],
         status: '',
         textarea: '',
         cost: 0,
         price: 0,
-        calorie: 0
-      }
+        calorie: 0,
+        MenuCount: 0
+      },
+      M_category: ''
     }
   },
   methods: {
+    getCategory (mCategory) {
+      if (mCategory === '肉类') {
+        return '1'
+      } else if (mCategory === '青叶菜类') {
+        return '2'
+      } else if (mCategory === '瓜果类') {
+        return '3'
+      } else {
+        return '4'
+      }
+    },
     // 保存菜品
     handleSubmit () {
+      // this.getMenuCount()
+      console.log(this.MenuCount)
+      this.formItem.num = this.MenuCount + 1
       for (var key in this.formItem) {
         if (this.formItem[key] === '' || this.formItem.key === 0) {
           this.$Notice.warning({
@@ -84,9 +98,46 @@ export default {
           return
         }
       }
+      console.log(this.formItem.select)
+      if (this.formItem.select === '肉类') {
+        this.M_category = '1'
+      } else if (this.formItem.select === '青叶菜类') {
+        this.M_category = '2'
+      } else if (this.formItem.select === '瓜果类') {
+        this.M_category = '3'
+      } else {
+        this.M_category = '4'
+      }
+      console.log(this.M_category)
       console.log(this.formItem)
+      service.post('menu', {
+        mId: this.formItem.num,
+        mName: this.formItem.name,
+        mOldPrice: this.formItem.cost,
+        mPrice: this.formItem.price,
+        mCalorie: this.formItem.calorie,
+        mCategory: this.M_category,
+        mMaterial: this.formItem.textarea
+      })
+        .catch(error => {
+          console.log(error)
+        })
+        .then(res => {
+          console.log(res.data)
+        })
+      console.log(this.formItem.calorie)
     },
-
+    async getMenuCount () {
+      service.get('menu/count', {
+      })
+        .catch(error => {
+          console.log(error)
+        })
+        .then(res => {
+          // console.log(res.data.data)
+          this.MenuCount = res.data.data
+        })
+    },
     // 点击返回
     handleGoBack () {
       this.$router.push('/index/dish')
@@ -95,6 +146,9 @@ export default {
     handleUploadSuccess (url) {
       console.log('图片上传成功', url)
     }
+  },
+  mounted () {
+    this.getMenuCount()
   }
 }
 </script>
