@@ -5,18 +5,19 @@
         <span>用户评分管理</span>
       </template>
     </Title>
-    <BaseTable :chooseComponent="tableObj" url='/evaluate.json' edit="修改" del="结束"></BaseTable>
+    <EvaluateTablePage :chooseComponent="tableObj" url='' edit="修改" del="结束"></EvaluateTablePage>
   </div>
 </template>
 
 <script>
 import Title from '../../components/Title.vue'
-import BaseTable from '../../components/BaseTablePage.vue'
+// import BaseTable from '../../components/BaseTablePage.vue'
+import EvaluateTablePage from '@/components/EvaluateTablePage'
 
 export default {
   components: {
     Title,
-    BaseTable
+    EvaluateTablePage
   },
   data () {
     return {
@@ -25,7 +26,7 @@ export default {
         tableHead: [
           {
             title: '编号',
-            key: 'cumstomerId',
+            key: 'consumerId',
             width: 70,
             align: 'center'
           },
@@ -43,7 +44,7 @@ export default {
           },
           {
             title: '评价内容',
-            key: 'opnion',
+            key: 'opinion',
             width: 150,
             align: 'center',
             tooltip: true
