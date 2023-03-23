@@ -3,7 +3,7 @@
     <div class="search_condition w">
       <Select class="select" v-show="chooseComponent.new" :text="chooseComponent.dishClassify" :itemArray="chooseComponent.dishArr" @select="handleSelectValue"></Select>
       <Select class="select" v-show="chooseComponent.haveSelect" :text="chooseComponent.selectText" :itemArray="chooseComponent.selectArr" @select="handleSelectValue"></Select>
-      <Date class="select" style="margin-left: 150px" v-show="chooseComponent.haveDate" @getDate="getDateChoose"></Date>
+      <Date class="select" v-show="chooseComponent.haveDate" @getDate="getDateChoose"></Date>
       <Button type="primary" class="button" v-show="chooseComponent.haveDate || chooseComponent.haveSelect" @click="handleClickSelect"><span class="iconfont icon-loudou"></span>筛选</Button>
       <Button type="primary" class="button" v-show="chooseComponent.haveDate || chooseComponent.haveSelect" @click="handleResetSelect">刷新</Button>
       <Search v-show="chooseComponent.haveSearch" @getSearch="handleSearch"></Search>
@@ -26,6 +26,7 @@ import Table from './Table.vue'
 import Page from './Page.vue'
 import axios from 'axios'
 import service from '@/utils/http'
+
 export default {
   props: {
     // 请求数据url
@@ -120,7 +121,7 @@ export default {
       this.search = data
       console.log(this.search)
       // 发送请求
-      service.post('selectEvaluateBySearchData', {
+      service.post('selectFeedbackBySearchData', {
         data: data
       })
         .catch(error => {
@@ -147,20 +148,27 @@ export default {
           DateTime += this.date[i]
         }
       }
-      service.post('selectEvaluateByDate', {
-        time: DateTime
-      })
-        .catch(error => {
-          console.log(error)
+      console.log(DateTime)
+      if (this.selectValue === 1) {
+        service.post('selectFeedbackInOrderByTime', {
+          time: DateTime
         })
-        .then(res => {
-          console.log(res.data.data)
-          this.pageDataLength = res.data.data.length
-          this.allTableData = res.data.data
-          var table = this.allTableData.slice(0, 10)
-          this.tableData = table
-          console.log(table)
-        })
+          .catch(error => {
+            console.log(error)
+          })
+          .then(res => {
+            console.log(res.data)
+            this.pageDataLength = res.data.data.length
+            this.allTableData = res.data.data
+            var table = this.allTableData.slice(0, 10)
+            this.tableData = table
+            console.log(table)
+          })
+      } else {
+        this.pageDataLength = 0
+        this.allTableData = null
+        this.tableData = null
+      }
     }
   },
   mounted () {
@@ -171,7 +179,7 @@ export default {
       // this.tableData = table
     })
 
-    service.get('evaluate/list', {
+    service.get('feedback/list', {
     })
       .catch(error => {
         console.log(error)

@@ -5,19 +5,18 @@
         <span>用户投诉管理</span>
       </template>
     </Title>
-    <BaseTable :chooseComponent="tableObj" url="/feedback.json
-    " edit="反馈" del="结束"></BaseTable>
+    <FeedbackTablePage :chooseComponent="tableObj" url="" edit="反馈" del="结束"></FeedbackTablePage>
   </div>
 </template>
 
 <script>
 import Title from '../../components/Title.vue'
-import BaseTable from '../../components/BaseTablePage.vue'
+import FeedbackTablePage from '@/components/FeedbackTablePage'
 
 export default {
   components: {
     Title,
-    BaseTable
+    FeedbackTablePage
   },
   data () {
     return {
@@ -36,47 +35,41 @@ export default {
         ],
         tableHead: [
           {
-            title: '编号',
-            key: 'num',
-            width: 70,
-            align: 'center'
-          },
-          {
-            title: '用户名',
-            key: 'cumstomerName',
+            title: '用户编号',
+            key: 'consumerId',
             width: 150,
             align: 'center'
           },
           {
-            title: '用户电话',
-            key: 'cumstomerPhone',
+            title: '用户投诉时间',
+            key: 'feedbackManagerTime',
             width: 200,
             align: 'center'
           },
           {
             title: '投诉内容',
-            key: 'complaint',
+            key: 'feedbackComplaint',
             width: 150,
             align: 'center',
             tooltip: true
           },
           {
             title: '状态',
-            key: 'status',
+            key: 'feedbackStatus',
             slot: 'status_c',
             width: 120,
             align: 'center'
           },
           {
-            title: '投诉时间',
-            key: 'time',
+            title: '管理员反馈内容',
+            key: 'returnOpinion',
             width: 200,
             align: 'center'
           },
           {
-            title: '设置',
-            slot: 'action',
-            width: 120,
+            title: '管理员反馈时间',
+            key: 'feedbackManagerTime',
+            width: 200,
             align: 'center'
           }
         ],
