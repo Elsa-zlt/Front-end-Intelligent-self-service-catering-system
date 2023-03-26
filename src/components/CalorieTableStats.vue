@@ -59,52 +59,10 @@ export default {
       allTableBody: [],
       tableBody: [],
       tableLength: 0
-
     }
   },
   methods: {
     getTableDate (url, date) {
-      // service.get('menu/list', {
-      // })
-      //   .catch(error => {
-      //     console.log(error)
-      //   })
-      //   .then(res => {
-      //     console.log(res.data.data)
-      //     this.tableLength = 4
-      //     const resData = res.data.data
-      //     let tableBody
-      //     let allTableBody = []
-      //     let totalCalorie = [0, 0, 0, 0]
-      //     let totalCalorieData = 0
-      //     // this.allTableBody = res.data.data
-      //     console.log(resData.length)
-      //     for (var j = 0; j < resData.length; j++) {
-      //       if (resData[j].mCategory === '1') {
-      //         totalCalorie[0] += resData[j].mCalorie
-      //         totalCalorieData += resData[j].mCalorie
-      //       } else if (resData[j].mCategory === '2') {
-      //         totalCalorie[1] += resData[j].mCalorie
-      //         totalCalorieData += resData[j].mCalorie
-      //       } else if (resData[j].mCategory === '3') {
-      //         totalCalorie[2] += resData[j].mCalorie
-      //         totalCalorieData += resData[j].mCalorie
-      //       } else if (resData[j].mCategory === '4') {
-      //         totalCalorie[3] += resData[j].mCalorie
-      //         totalCalorieData += resData[j].mCalorie
-      //       }
-      //     }
-      //     console.log(totalCalorieData)
-      //     for (var i = 1; i <= 4; i++) {
-      //       tableBody = { mCategory: this.getCategory(i.toString()), totalCalorie: totalCalorie[i - 1], percentageCalorie: Math.round((totalCalorie[i - 1] / totalCalorieData) * 10000) / 100 + '%' }
-      //       allTableBody.push(tableBody)
-      //     }
-      //     console.log(tableBody)
-      //     console.log(allTableBody)
-      //     console.log(this.totalCalorie)
-      //     this.tableBody = allTableBody
-      //     // console.log(this.tableBody)
-      //   })
       // if (url === '/likeStats.json' || url === '/calorie.json') {
       //   axios.get(url).then(res => {
       //     this.allTableBody = res.data.result.array
@@ -115,7 +73,8 @@ export default {
       //   axios.get(url).then(res => {
       //     this.tableBody = res.data.result.array
       //   })
-      service.post('getCategorySumByTimeAndCategory', {
+      // }
+      service.post('getCalorieTableByTime', {
         data: '20230323'
       })
         .catch(error => {
@@ -130,18 +89,6 @@ export default {
           this.tableData = table
           console.log(table)
         })
-    },
-    getCategory (mCategory) {
-      if (mCategory === '1') {
-        mCategory = '肉类'
-      } else if (mCategory === '2') {
-        mCategory = '青叶菜类'
-      } else if (mCategory === '3') {
-        mCategory = '瓜果类'
-      } else {
-        mCategory = '水果类'
-      }
-      return mCategory
     },
     handleFirst (date) {
       // 获取当天的日期

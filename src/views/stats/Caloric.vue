@@ -7,21 +7,21 @@
     </Title>
     <div class="content">
       <ClassifyTableStats :tableObj="classifyTable"></ClassifyTableStats>
-      <TableStats :tableObj="calorieTable"></TableStats>
+      <CalorieTableStats :tableObj="calorieTable"></CalorieTableStats>
     </div>
   </div>
 </template>
 
 <script>
 import Title from '../../components/Title.vue'
-import TableStats from '../../components/TableStats.vue'
 import ClassifyTableStats from '@/components/ClassifyTableStats'
+import CalorieTableStats from '@/components/CalorieTableStats'
 
 export default {
   components: {
+    CalorieTableStats,
     ClassifyTableStats,
-    Title,
-    TableStats
+    Title
   },
   data () {
     return {
