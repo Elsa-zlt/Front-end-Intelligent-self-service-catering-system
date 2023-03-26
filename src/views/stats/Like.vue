@@ -6,7 +6,7 @@
       </template>
     </Title>
     <div class="content">
-      <TableStats :tableObj="classifyTable"></TableStats>
+      <CategoryPriceTableStats :tableObj="classifyTable"></CategoryPriceTableStats>
       <TableStats :tableObj="likeTable"></TableStats>
     </div>
   </div>
@@ -15,9 +15,11 @@
 <script>
 import Title from '../../components/Title.vue'
 import TableStats from '../../components/TableStats.vue'
+import CategoryPriceTableStats from '@/components/CategoryPriceTableStats'
 
 export default {
   components: {
+    CategoryPriceTableStats,
     Title,
     TableStats
   },
@@ -31,31 +33,31 @@ export default {
         tableHead: [
           {
             title: '分类名称',
-            key: 'classify',
+            key: 'category',
             width: 150,
             align: 'center'
           },
           {
             title: '销售数量',
-            key: 'saleNum',
+            key: 'num',
             width: 150,
             align: 'center'
           },
           {
             title: '数量比例',
-            key: 'numRatio',
+            key: 'ratio',
             width: 150,
             align: 'center'
           },
           {
             title: '销售金额',
-            key: 'saleMoney',
+            key: 'totalPrice',
             width: 150,
             align: 'center'
           },
           {
             title: '金额比例',
-            key: 'moneyRatio',
+            key: 'totalPriceRatio',
             width: 150,
             align: 'center'
           }
