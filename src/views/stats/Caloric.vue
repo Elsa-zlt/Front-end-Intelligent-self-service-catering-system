@@ -6,7 +6,7 @@
       </template>
     </Title>
     <div class="content">
-      <TableStats :tableObj="classifyTable"></TableStats>
+      <ClassifyTableStats :tableObj="classifyTable"></ClassifyTableStats>
       <TableStats :tableObj="calorieTable"></TableStats>
     </div>
   </div>
@@ -15,9 +15,11 @@
 <script>
 import Title from '../../components/Title.vue'
 import TableStats from '../../components/TableStats.vue'
+import ClassifyTableStats from '@/components/ClassifyTableStats'
 
 export default {
   components: {
+    ClassifyTableStats,
     Title,
     TableStats
   },
@@ -31,7 +33,7 @@ export default {
         tableHead: [
           {
             title: '分类名称',
-            key: 'category',
+            key: 'mCategory',
             width: 150,
             align: 'center'
           },
@@ -43,12 +45,12 @@ export default {
           },
           {
             title: '热量比例',
-            key: 'precentCalorie',
+            key: 'percentageCalorie',
             width: 150,
             align: 'center'
           }
         ],
-        url: '/classify.json',
+        url: '',
         tableWidth: '452'
       },
       // 菜品热量统计分析
