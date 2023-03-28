@@ -7,21 +7,21 @@
     </Title>
     <div class="content">
       <CategoryPriceTableStats :tableObj="classifyTable"></CategoryPriceTableStats>
-      <TableStats :tableObj="likeTable"></TableStats>
+      <MenuPriceStatsTable :tableObj="likeTable"></MenuPriceStatsTable>
     </div>
   </div>
 </template>
 
 <script>
 import Title from '../../components/Title.vue'
-import TableStats from '../../components/TableStats.vue'
 import CategoryPriceTableStats from '@/components/CategoryPriceTableStats'
+import MenuPriceStatsTable from '@/components/MenuPriceStatsTable'
 
 export default {
   components: {
+    MenuPriceStatsTable,
     CategoryPriceTableStats,
-    Title,
-    TableStats
+    Title
   },
   data () {
     return {
@@ -79,31 +79,31 @@ export default {
             align: 'center'
           },
           {
-            title: '浏览人数',
-            key: 'visitNum',
-            width: 150,
-            align: 'center'
-          },
-          {
-            title: '付款人数',
-            key: 'payNum',
-            width: 150,
-            align: 'center'
-          },
-          {
             title: '销售数量',
-            key: 'saleNum',
+            key: 'num',
+            width: 150,
+            align: 'center'
+          },
+          {
+            title: '数量比例',
+            key: 'ratio',
             width: 150,
             align: 'center'
           },
           {
             title: '销售金额',
-            key: 'saleMoney',
+            key: 'totalPrice',
+            width: 150,
+            align: 'center'
+          },
+          {
+            title: '金额比例',
+            key: 'totalPriceRatio',
             width: 150,
             align: 'center'
           }
         ],
-        url: '/likeStats.json',
+        url: '',
         tableWidth: '753'
       }
     }
