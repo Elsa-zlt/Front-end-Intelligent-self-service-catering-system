@@ -141,6 +141,7 @@ import Page from '../../components/Page.vue'
 import TimeRange from '../../components/TimeRange.vue'
 import * as echarts from 'echarts'
 import axios from 'axios'
+import service from "@/utils/http";
 
 export default {
   components: {
@@ -158,11 +159,11 @@ export default {
       spendNum: 20000,
       incomeAvg: 10,
       spendAvg: -20,
-      // 菜品收支统计表
+      // 菜品收支统计表 (id=4, name=西红柿, price=5, state=已上架, look=82, num=3, income=15, expand=12, profit=3)
       dishTableHead: [
         {
           title: '编号',
-          key: 'index',
+          key: 'id',
           width: 70,
           align: 'center'
         },
@@ -180,32 +181,32 @@ export default {
         },
         {
           title: '菜品状态',
-          key: 'status',
+          key: 'state',
           width: 100,
           slot: 'status_d',
           align: 'center'
         },
         {
           title: '浏览数',
-          key: 'readNum',
+          key: 'look',
           width: 116,
           align: 'center'
         },
         {
           title: '总销售量',
-          key: 'saleNum',
+          key: 'num',
           width: 100,
           align: 'center'
         },
         {
           title: '销售总额',
-          key: 'saleMoney',
+          key: 'income',
           width: 120,
           align: 'center'
         },
         {
           title: '支出总额',
-          key: 'pay',
+          key: 'expand',
           width: 120,
           align: 'center'
         },
@@ -229,13 +230,13 @@ export default {
       userTableHead: [
         {
           title: '用户编号',
-          key: 'uId',
+          key: 'id',
           width: 100,
           align: 'center'
         },
         {
           title: '用户名',
-          key: 'username',
+          key: 'name',
           width: 130,
           align: 'center'
         },
@@ -254,19 +255,19 @@ export default {
         },
         {
           title: '菜品数量',
-          key: 'dishNum',
+          key: 'num',
           width: 100,
           align: 'center'
         },
         {
           title: '支出总额',
-          key: 'totalPay',
+          key: 'expend',
           width: 110,
           align: 'center'
         },
         {
           title: '热量总计',
-          key: 'calorieSum',
+          key: 'calorie',
           width: 120,
           align: 'center'
         },
@@ -454,21 +455,47 @@ export default {
 
     // 请求菜品统计表数据
     getDishStatsData () {
-      axios.get('/dishStats.json').then(res => {
-        this.allDishTableBody = res.data.result.array
-        this.dishTotal = res.data.result.array.length
-        this.dishTableBody = this.allDishTableBody.slice(0, 10)
+      axios.get('/').then(res => {
+        // this.allDishTableBody = res.data.result.array
+        // this.dishTotal = res.data.result.array.length
+        // this.dishTableBody = this.allDishTableBody.slice(0, 10)
         // console.log(this.tableData)
       })
+      service.post('getMenuIncomeExpenseByTime', {
+        data: '20230323'
+      })
+        .catch(error => {
+          console.log(error)
+        })
+        .then(res => {
+          console.log(res.data.data)
+          this.allDishTableBody = res.data.data
+          this.dishTableBody = res.data.data.slice(0, 10)
+          this.dishTotal = res.data.data.length
+          console.log(this.allDishTableBody)
+        })
     },
     // 请求用户个人统计数据
     getUserStatsData () {
       axios.get('/userStats.json').then(res => {
-        console.log(res)
-        this.allUserTableBody = res.data.result.array
-        this.userTotal = res.data.result.array.length
-        this.userTableBody = this.allUserTableBody.slice(0, 10)
+        // console.log(res)
+        // this.allUserTableBody = res.data.result.array
+        // this.userTotal = res.data.result.array.length
+        // this.userTableBody = this.allUserTableBody.slice(0, 10)
       })
+      service.post('getUserPersonalByTime', {
+        data: '20230323'
+      })
+        .catch(error => {
+          console.log(error)
+        })
+        .then(res => {
+          console.log(res.data.data)
+          this.allUserTableBody = res.data.data
+          this.userTableBody = res.data.data.slice(0, 10)
+          this.userTotal = res.data.data.length
+          console.log(this.allDishTableBody)
+        })
     },
 
     // 菜品收支统计分页
