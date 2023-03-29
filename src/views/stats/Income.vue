@@ -281,7 +281,14 @@ export default {
       ],
       allUserTableBody: [],
       userTableBody: [],
-      userTotal: 0
+      userTotal: 0,
+      TradeEchartsNum1: 10,
+      TradeEchartsNum2: 0,
+      TradeEchartsNum3: 0,
+      TradeEchartsNum4: 0,
+      TradeEchartsNum5: 0,
+      TradeEchartsNum6: 0,
+      TradeEchartsNum7: 0
     }
   },
   methods: {
@@ -506,6 +513,108 @@ export default {
     // 用户个人统计分页
     handleUserReturnPage (data) {
       this.userTableBody = this.allUserTableBody.slice((data - 1) * 10, data * 10)
+    },
+
+    async getTradeEcharts () {
+      service.post('getTradeEchartsByPriceAndDate', {
+        LowPrice: '0',
+        HighPrice: '10',
+        date: '20230323'
+      })
+        .catch(error => {
+          console.log(error)
+        })
+        .then(res => {
+          console.log(res.data.data)
+          this.TradeEchartsNum1 = res.data.data
+        })
+
+      service.post('getTradeEchartsByPriceAndDate', {
+        LowPrice: '11',
+        HighPrice: '20',
+        date: '20230323'
+      })
+        .catch(error => {
+          console.log(error)
+        })
+        .then(res => {
+          console.log(res.data.data)
+          this.TradeEchartsNum2 = res.data.data
+        })
+
+      service.post('getTradeEchartsByPriceAndDate', {
+        LowPrice: '21',
+        HighPrice: '30',
+        date: '20230323'
+      })
+        .catch(error => {
+          console.log(error)
+        })
+        .then(res => {
+          console.log(res.data.data)
+          this.TradeEchartsNum3 = res.data.data
+        })
+
+      service.post('getTradeEchartsByPriceAndDate', {
+        LowPrice: '31',
+        HighPrice: '40',
+        date: '20230323'
+      })
+        .catch(error => {
+          console.log(error)
+        })
+        .then(res => {
+          console.log(res.data.data)
+          this.TradeEchartsNum4 = res.data.data
+        })
+
+      service.post('getTradeEchartsByPriceAndDate', {
+        LowPrice: '41',
+        HighPrice: '50',
+        date: '20230323'
+      })
+        .catch(error => {
+          console.log(error)
+        })
+        .then(res => {
+          console.log(res.data.data)
+          this.TradeEchartsNum5 = res.data.data
+        })
+
+      service.post('getTradeEchartsByPriceAndDate', {
+        LowPrice: '51',
+        HighPrice: '60',
+        date: '20230323'
+      })
+        .catch(error => {
+          console.log(error)
+        })
+        .then(res => {
+          console.log(res.data.data)
+          this.TradeEchartsNum6 = res.data.data
+        })
+
+      service.post('getTradeEchartsByPriceAndDate', {
+        LowPrice: '61',
+        HighPrice: '100000000',
+        date: '20230323'
+      })
+        .catch(error => {
+          console.log(error)
+        })
+        .then(res => {
+          console.log(res.data.data)
+          this.TradeEchartsNum7 = res.data.data
+          this.setTradeEcharts('tradeImg', [
+            { name: '0-10元', num: this.TradeEchartsNum1 },
+            { name: '11-20元', num: this.TradeEchartsNum2 },
+            { name: '21-30元', num: this.TradeEchartsNum3 },
+            { name: '31-40', num: this.TradeEchartsNum4 },
+            { name: '41-50', num: this.TradeEchartsNum5 },
+            { name: '50-60', num: this.TradeEchartsNum6 },
+            { name: '61元以上', num: this.TradeEchartsNum7 }
+          ])
+        })
     }
   },
 
@@ -528,15 +637,9 @@ export default {
       { name: '08-28', income: 330, pay: 230 },
       { name: '08-29', income: 310, pay: 200 }
     ])
-    this.setTradeEcharts('tradeImg', [
-      { name: '0-50元', num: 120 },
-      { name: '51-100元', num: 200 },
-      { name: '101-200元', num: 150 },
-      { name: '201-500元', num: 80 },
-      { name: '201-1000元', num: 70 },
-      { name: '1001-2000元', num: 110 },
-      { name: '2001元以上', num: 130 }
-    ])
+
+    this.getTradeEcharts()
+
 
     // 请求菜品统计表数据
     this.getDishStatsData()
