@@ -71,7 +71,7 @@
               </div>
               <div id="saleImg" style="width: 908px;height: 400px"></div>
               <TimeRange class='time' first="本日" second="本月" third="本年" @chooseFirst="handleFirst" @chooseSecond="handleSecond" @chooseThird="handleThird"></TimeRange>
-              <Date class="date"  type1="month" placeholder1="请选择月份"></Date>
+              <DateV class="date"  type1="month" placeholder1="请选择月份"></DateV>
             </div>
           </template>
       </DetailCard>
@@ -85,7 +85,7 @@
           <div class="container">
             <div id="tradeImg" style="width:1100px;height:470px"></div>
             <TimeRange class='time' first="本日" second="本月" third="本年" @chooseFirst="handleFirst" @chooseSecond="handleSecond" @chooseThird="handleThird"></TimeRange>
-            <Date class="date"  type1="month" placeholder1="请选择月份"></Date>
+            <DateV class="date"  type1="month" placeholder1="请选择月份"></DateV>
           </div>
         </template>
       </DetailCard>
@@ -100,7 +100,7 @@
             <div class="condition">
               <Search class="search"></Search>
               <TimeRange class="time" first="本日" second="本月" third="本年"  @chooseFirst="handleFirst" @chooseSecond="handleSecond" @chooseThird="handleThird"></TimeRange>
-              <Date class="date"></Date>
+              <DateV class="date"></DateV>
             </div>
             <Table class="table" :isBorder="true" :isStripe="true" :head="dishTableHead" :body="dishTableBody" width1="'960px'" editText="编辑" delText="删除"></Table>
             <Page class="page" :totalData="dishTotal" @returnPage="handleDishReturnPage"></Page>
@@ -118,7 +118,7 @@
             <div class="condition">
               <Search class="search"></Search>
               <TimeRange class="time" first="本日" second="本月" third="本年" @chooseFirst="handleFirst" @chooseSecond="handleSecond" @chooseThird="handleThird"></TimeRange>
-              <Date class="date"></Date>
+              <DateV class="date"></DateV>
             </div>
             <div class="table">
               <Table class="table1" :isBorder="true" :isStripe="true" :head="userTableHead" :body="userTableBody" width1="'902px'" editText="编辑" delText="删除"></Table>
@@ -134,14 +134,15 @@
 <script>
 import Title from '../../components/Title.vue'
 import DetailCard from '../../components/DetailCard.vue'
-import Date from '../../components/Date.vue'
+import DateV from '../../components/Date.vue'
 import Search from '../../components/Search.vue'
 import Table from '../../components/Table.vue'
 import Page from '../../components/Page.vue'
 import TimeRange from '../../components/TimeRange.vue'
 import * as echarts from 'echarts'
 import axios from 'axios'
-import service from "@/utils/http";
+import service from '@/utils/http'
+// import DateUtil from '@/utils/DateUtil'
 
 export default {
   components: {
@@ -150,7 +151,7 @@ export default {
     Search,
     Table,
     Page,
-    Date,
+    DateV,
     TimeRange
   },
   data () {
@@ -159,6 +160,9 @@ export default {
       spendNum: 20000,
       incomeAvg: 10,
       spendAvg: -20,
+      SaleEchartsDays: [],
+      income: [0, 0, 0, 0, 0, 0, 0],
+      expend: [0, 0, 0, 0, 0, 0, 0],
       // 菜品收支统计表 (id=4, name=西红柿, price=5, state=已上架, look=82, num=3, income=15, expand=12, profit=3)
       dishTableHead: [
         {
@@ -515,7 +519,34 @@ export default {
       this.userTableBody = this.allUserTableBody.slice((data - 1) * 10, data * 10)
     },
 
+    async getDay () {
+      const days = []
+      // eslint-disable-next-line no-tabs
+      for (let i = 0; i <= 24 * 6; i += 24) {		// 今天加上前6天
+        const dateItem1 = new Date()
+        const dateItem = new Date(dateItem1.getTime() - i * 60 * 60 * 1000)// 使用当天时间戳减去以前的时间毫秒（小时*分*秒*毫秒）
+        const y = dateItem.getFullYear()// 获取年份
+        let m = dateItem.getMonth() + 1// 获取月份js月份从0开始，需要+1
+        let d = dateItem.getDate()// 获取日期
+        m = this.addDate0(m)// 给为单数的月份补零
+        d = this.addDate0(d)// 给为单数的日期补零
+        const valueItem = y + '-' + m + '-' + d// 组合
+        days.push(valueItem)// 添加至数组
+      }
+      console.log('最近七天日期：', days)
+      this.SaleEchartsDays = days
+      return days
+    },
+
+    addDate0 (time) {
+      if (time.toString().length === 1) {
+        time = '0' + time.toString()
+      }
+      return time
+    },
+
     async getTradeEcharts () {
+      console.log(this.getDay())
       service.post('getTradeEchartsByPriceAndDate', {
         LowPrice: '0',
         HighPrice: '10',
@@ -615,6 +646,94 @@ export default {
             { name: '61元以上', num: this.TradeEchartsNum7 }
           ])
         })
+    },
+    async getSaleEcharts () {
+      service.post('getSaleEchartsByDate', {
+        data: this.SaleEchartsDays[0]
+      })
+        .catch(error => {
+          console.log(error)
+        })
+        .then(res => {
+          console.log(res.data.data.expend)
+          this.expend[0] = res.data.data.expend
+          this.income[0] = res.data.data.income
+        })
+      service.post('getSaleEchartsByDate', {
+        data: this.SaleEchartsDays[1]
+      })
+        .catch(error => {
+          console.log(error)
+        })
+        .then(res => {
+          console.log(res.data.data.expend)
+          this.expend[1] = res.data.data.expend
+          this.income[1] = res.data.data.income
+        })
+      service.post('getSaleEchartsByDate', {
+        data: this.SaleEchartsDays[2]
+      })
+        .catch(error => {
+          console.log(error)
+        })
+        .then(res => {
+          console.log(res.data.data.expend)
+          this.expend[2] = res.data.data.expend
+          this.income[2] = res.data.data.income
+        })
+      service.post('getSaleEchartsByDate', {
+        data: this.SaleEchartsDays[3]
+      })
+        .catch(error => {
+          console.log(error)
+        })
+        .then(res => {
+          console.log(res.data.data.expend)
+          this.expend[3] = res.data.data.expend
+          this.income[3] = res.data.data.income
+        })
+      service.post('getSaleEchartsByDate', {
+        data: this.SaleEchartsDays[4]
+      })
+        .catch(error => {
+          console.log(error)
+        })
+        .then(res => {
+          console.log(res.data.data.expend)
+          this.expend[4] = res.data.data.expend
+          this.income[4] = res.data.data.income
+        })
+      service.post('getSaleEchartsByDate', {
+        data: this.SaleEchartsDays[5]
+      })
+        .catch(error => {
+          console.log(error)
+        })
+        .then(res => {
+          console.log(res.data.data.expend)
+          this.expend[5] = res.data.data.expend
+          this.income[5] = res.data.data.income
+        })
+      service.post('getSaleEchartsByDate', {
+        data: this.SaleEchartsDays[6]
+      })
+        .catch(error => {
+          console.log(error)
+        })
+        .then(res => {
+          console.log(res.data.data.expend)
+          this.expend[6] = res.data.data.expend
+          this.income[6] = res.data.data.income
+          this.setSaleEcharts('saleImg', [
+            { name: this.SaleEchartsDays[6], income: this.income[6], pay: this.expend[6] },
+            { name: this.SaleEchartsDays[5], income: this.income[5], pay: this.expend[5] },
+            { name: this.SaleEchartsDays[4], income: this.income[4], pay: this.expend[4] },
+            { name: this.SaleEchartsDays[3], income: this.income[3], pay: this.expend[3] },
+            { name: this.SaleEchartsDays[2], income: this.income[2], pay: this.expend[2] },
+            { name: this.SaleEchartsDays[1], income: this.income[1], pay: this.expend[1] },
+            { name: this.SaleEchartsDays[0], income: this.income[0], pay: this.expend[0] }
+          ])
+        })
     }
   },
 
@@ -628,19 +747,11 @@ export default {
   },
 
   mounted () {
-    this.setSaleEcharts('saleImg', [
-      { name: '08-23', income: 220, pay: 120 },
-      { name: '08-24', income: 182, pay: 132 },
-      { name: '08-25', income: 191, pay: 101 },
-      { name: '08-26', income: 234, pay: 134 },
-      { name: '08-27', income: 290, pay: 90 },
-      { name: '08-28', income: 330, pay: 230 },
-      { name: '08-29', income: 310, pay: 200 }
-    ])
+    this.getDay()
+    console.log(this.SaleEchartsDays)
+    this.getSaleEcharts()
 
     this.getTradeEcharts()
-
-
     // 请求菜品统计表数据
     this.getDishStatsData()
     // 请求用户个人统计表数据
