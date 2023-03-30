@@ -269,6 +269,9 @@ export default {
           for (let i = 0; i < this.allTableData.length; i++) {
             var oId = this.allTableData[i].oId
             var cId = this.allTableData[i].cId
+            if (this.allTableData[i].oStringTime === null) {
+              this.allTableData[i].oStringTime = this.allTableData[i].oTime
+            }
             this.getTableData(oId, i)
             this.getConsumerInfoBycId(cId, i)
           }

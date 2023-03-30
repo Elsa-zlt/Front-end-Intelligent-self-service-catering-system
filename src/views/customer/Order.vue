@@ -73,7 +73,7 @@ export default {
           },
           {
             title: '下单时间',
-            key: 'oTime',
+            key: 'oStringTime',
             width: 200,
             align: 'center'
           },
