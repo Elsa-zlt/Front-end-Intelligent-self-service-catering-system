@@ -11,31 +11,31 @@
         <div class="each">
           <div>
             <div class="text">收入总数</div>
-            <div class="num">￥20000元</div>
+            <div class="num">￥{{TotalIncome}}元</div>
           </div>
         </div>
         <div class="each">
           <div>
             <div class="text">今日营收</div>
-            <div class="num">￥20000元</div>
+            <div class="num">￥{{income[0]}}元</div>
           </div>
         </div>
         <div class="each">
           <div>
             <div class="text">昨日营收</div>
-            <div class="num">￥20000元</div>
+            <div class="num">￥{{income[1]}}元</div>
           </div>
         </div>
         <div class="each">
           <div>
             <div class="text">本月营收</div>
-            <div class="num">￥20000元</div>
+            <div class="num">￥{{incomeNum}}元</div>
           </div>
         </div>
         <div class="each">
           <div>
             <div class="text">本年营收</div>
-            <div class="num">￥20000元</div>
+            <div class="num">￥{{YearIncome}}元</div>
           </div>
         </div>
       </div>
@@ -156,6 +156,8 @@ export default {
   },
   data () {
     return {
+      YearIncome: 0,
+      TotalIncome: 0,
       incomeNum: 10000,
       spendNum: 20000,
       incomeAvg: 10,
@@ -518,7 +520,41 @@ export default {
     handleUserReturnPage (data) {
       this.userTableBody = this.allUserTableBody.slice((data - 1) * 10, data * 10)
     },
-
+    async getMonthIncomeAndExpend () {
+      service.get('getMonthIncomeAndExpend', {
+      })
+        .catch(error => {
+          console.log(error)
+        })
+        .then(res => {
+          // incomeNum: 10000,spendNum: 20000,incomeAvg: 10,spendAvg: -20,
+          console.log(res.data)
+          this.incomeNum = res.data.data.monIncome
+          this.spendNum = res.data.data.monExpend
+        })
+    },
+    async getYearIncome () {
+      service.get('getYearIncome', {
+      })
+        .catch(error => {
+          console.log(error)
+        })
+        .then(res => {
+          // incomeNum: 10000,spendNum: 20000,incomeAvg: 10,spendAvg: -20,
+          console.log(res.data.data.data.yIncome)
+          this.YearIncome = res.data.data.data.yIncome
+        })
+      service.get('getTotalIncome', {
+      })
+        .catch(error => {
+          console.log(error)
+        })
+        .then(res => {
+          // incomeNum: 10000,spendNum: 20000,incomeAvg: 10,spendAvg: -20,
+          console.log(res.data.data.data)
+          this.TotalIncome = res.data.data.data
+        })
+    },
     async getDay () {
       const days = []
       // eslint-disable-next-line no-tabs
@@ -747,6 +783,8 @@ export default {
   },
 
   mounted () {
+    this.getYearIncome()
+    this.getMonthIncomeAndExpend()
     this.getDay()
     console.log(this.SaleEchartsDays)
     this.getSaleEcharts()

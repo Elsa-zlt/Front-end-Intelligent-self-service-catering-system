@@ -108,7 +108,7 @@
           订单统计
         </template>
         <template #content>
-          <LineEcharts eachId="img_order"  url="/orderStats.json" title="订单" unit="数"></LineEcharts>
+          <OrderLineEcharts eachId="img_order"  url="/orderStats.json" title="订单" unit="数"></OrderLineEcharts>
         </template>
       </DetailCard>
 
@@ -118,7 +118,7 @@
           销售统计
         </template>
         <template #content>
-          <LineEcharts eachId="img_sale" url="/saleStats.json" title="销售" unit="额"></LineEcharts>
+          <SaleLineEcharts eachId="img_sale" url="/saleStats.json" title="销售" unit="额"></SaleLineEcharts>
         </template>
       </DetailCard>
 
@@ -156,10 +156,14 @@ import axios from 'axios'
 import service from '../../utils/http.js'
 import GoodTotalCard from '@/components/GoodTotalCard'
 import TotalCard from '@/components/TotalCard'
+import OrderLineEcharts from '@/components/OrderLineEcharts'
+import SaleLineEcharts from '@/components/SaleLineEcharts'
 // import axios from 'axios'
 
 export default {
   components: {
+    SaleLineEcharts,
+    OrderLineEcharts,
     GoodTotalCard,
     Title,
     DetailCard,
@@ -398,6 +402,36 @@ export default {
           }
         })
       })
+    },
+    async getCategoryPriceByTime () {
+      // 初始化环形图
+      service.post('getCategoryPriceByTime', {
+        data: '20230323'
+      })
+        .catch(error => {
+          console.log(error)
+        })
+        .then(res => {
+          console.log(res.data.data)
+          this.setEchartsPie('img_classify', [
+            { value: res.data.data[0].totalPrice, name: '肉类' },
+            { value: res.data.data[1].totalPrice, name: '青叶菜类' },
+            { value: res.data.data[2].totalPrice, name: '瓜果类' },
+            { value: res.data.data[3].totalPrice, name: '水果类' }
+          ])
+        })
+      // 餐厅数据
+      service.get('restaurant/list', {
+      })
+        .catch(error => {
+          console.log(error)
+        })
+        .then(res => {
+          console.log(res)
+          this.resName = res.data.data[0].resName
+          this.resAddress = res.data.data[0].resAddress
+          this.resOpenTime = res.data.data[0].resOpenTime
+        })
     }
   },
   computed: {
@@ -409,26 +443,8 @@ export default {
     }
   },
   mounted () {
+    this.getCategoryPriceByTime()
     // 发送ajax请求获取环形图的数据
-    // 初始化环形图
-    this.setEchartsPie('img_classify', [
-      { value: 4000, name: '肉类' },
-      { value: 3000, name: '青叶菜类' },
-      { value: 2000, name: '瓜果类' },
-      { value: 1000, name: '水果类' }
-    ])
-    // 餐厅数据
-    service.get('restaurant/list', {
-    })
-      .catch(error => {
-        console.log(error)
-      })
-      .then(res => {
-        console.log(res)
-        this.resName = res.data.data[0].resName
-        this.resAddress = res.data.data[0].resAddress
-        this.resOpenTime = res.data.data[0].resOpenTime
-      })
     axios.get('http://localhost:8081/hello', {
     })
       .catch(error => {
